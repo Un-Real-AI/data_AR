@@ -1,0 +1,1364 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Heiden - Grub – Report</title>
+  <!-- Pin plotly.js to a stable version -->
+  <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+
+  <style>
+  :root { --fg:#1f2937; --muted:#6b7280; --card:#ffffff; --bg:#f8fafc; --accent:#0ea5e9; }
+  *{box-sizing:border-box}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg); color:var(--fg); margin:0; padding:2rem;}
+  .report{max-width:1500px;margin:0 auto;background:var(--card);border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.06);}
+  h1{margin:.2rem 0 1rem;font-size:1.9rem}
+  h2{margin:1.6rem 0 .8rem;font-size:1.2rem}
+  h3{margin:1.2rem 0 .6rem;font-size:1.05rem}
+  .meta{color:var(--muted);font-size:.9rem;margin-bottom:1rem}
+  .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:.8rem 0 1.2rem}
+  .card{background:#fff;border:1px solid #eef2f7;border-radius:12px;padding:14px}
+  .kpi .value{font-weight:700;font-size:1.2rem}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .row-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  img{max-width:100%;height:auto;border-radius:8px;border:1px solid #eef2f7}
+  .table{width:100%;border-collapse:collapse;font-size:.92rem}
+  .table th,.table td{padding:.5rem .6rem;border-bottom:1px solid #eef2f7;text-align:left}
+  hr{border:none;border-top:1px solid #eef2f7;margin:1.2rem 0}
+  .link-card{display:flex;justify-content:space-between;align-items:center;padding:12px;border:1px solid #eef2f7;border-radius:10px;background:#fafcff}
+  .link-card a{color:var(--accent);text-decoration:none;font-weight:600}
+  .footer{color:var(--muted);font-size:.8rem;margin-top:1rem}
+  details{border:1px solid #eef2f7;border-radius:12px;background:#fff;margin:12px 0}
+  summary{cursor:pointer;list-style:none;padding:12px 14px;font-weight:600}
+  summary::-webkit-details-marker{display:none}
+  details > .content{padding:14px;border-top:1px solid #eef2f7}
+  .placeholder{user-select:none}
+  .badge{display:inline-block;background:#eef6ff;color:#0b6fb5;border:1px solid #cfe8ff;padding:.2rem .5rem;border-radius:999px;font-size:.8rem}
+  .small{font-size:.9rem;color:var(--muted)}
+
+  /* Schlüsseldaten key-value grid */
+  .kv{display:grid;grid-template-columns:1fr auto;gap:.25rem .8rem;align-items:baseline;margin:.2rem 0 1rem}
+  .kv .k{color:var(--muted)}
+  .kv .v{font-weight:600}
+
+  /* --- Tabs --- */
+  .tabs-nav{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0 1rem}
+  .tabs-nav button{
+    appearance:none;border:1px solid #e5e7eb;background:#f9fafb;color:var(--fg);
+    padding:.5rem .8rem;border-radius:999px;font-weight:600;cursor:pointer
+  }
+  .tabs-nav button[aria-selected="true"]{
+    background:var(--accent);color:#fff;border-color:var(--accent)
+  }
+  .tab-panel{display:none}
+  .tab-panel[data-active="true"]{display:block}
+  </style>
+</head>
+
+<body>
+<div class="report">
+
+  <div class="meta">Erstellt am 2025-09-18 23:23</div>
+  <h1>Heiden - Grub – Report</h1>
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+    
+    <div class="row-3">
+      <div class="card">
+      <h3>Lage</h3>
+      
+      <iframe data-src="../5_heiden-grub/heiden-grub_corridor_map.html" src="about:blank" width="100%" height="600"
+              loading="lazy" style="border:1px solid #eef2f7;border-radius:8px"></iframe>
+      <div class="small" style="margin-top:.4rem">
+        Falls der Iframe blockiert wird:
+        <a href="../5_heiden-grub/heiden-grub_corridor_map.html">im neuen Tab öffnen</a>.
+      </div>
+    
+    </div>
+      <div class="card">
+      <h3>Hauptstrasse</h3>
+      <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Namen</th>
+      <th>Fahrten</th>
+      <th>Anteil (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ebni / Frauenrüti</td>
+      <td>3843</td>
+      <td>100.0</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+    </div>
+
+    
+    <h2>Verkehrsaufkommen und MIV shifting Potentiale</h2>
+    <div class="row">
+      <div class="card">
+      <h3>Potenziale</h3>
+      
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Kenngrösse</th>
+          <th>Trips</th>
+          <th>Anteil an MIV</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Total-Trips</td>                 <td>4582</td> <td></td><td></td><td></td></tr>
+        <tr><td>MIV-Trips (Werktag)</td>         <td>3892</td>   <td></td><td></td><td></td></tr>
+        <tr><td>OV-Potenzial (Grün)</td>         <td>0</td>       <td>0%</td>           </tr>
+        <tr><td>OV-Potenzial (Grün+Gelb)</td>    <td>292</td> <td>8%</td> </tr>
+        <tr><td>Velo (&lt;5km)</td>               <td>580</td>        <td>15%</td>            </tr>
+        <tr><td>E-Bike (5–10km)</td>             <td>660</td>       <td>17%</td>           </tr>
+        <tr><td>Velo &amp; E-Bike (&lt;10km)</td> <td>1240</td>  <td>32%</td>      </tr>
+        <tr><td>OV &amp; Velo &amp; E-Bike</td>   <td>1502</td> <td>39%</td> </tr>
+      </tbody>
+    </table>
+    <div class="small">Anteile beziehen sich auf MIV-Trips im Korridor.</div>
+    </div>
+      <div class="card">
+      <h3>Potenziale</h3>
+      
+      <div>                            <div id="ae00c247-bc7b-415a-bc58-e2a72a4a5b8f" class="plotly-graph-div" style="height:220px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("ae00c247-bc7b-415a-bc58-e2a72a4a5b8f")) {                    Plotly.newPlot(                        "ae00c247-bc7b-415a-bc58-e2a72a4a5b8f",                        [{"customdata":[580,660,1240,0,292,1502],"hovertemplate":"%{y}\u003cbr\u003e% der MIV-Trips (Werktag): %{x:.1f}%\u003cbr\u003eFahrten: %{customdata:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","insidetextanchor":"middle","marker":{"color":"#17becf","line":{"color":"white","width":0}},"name":"% der MIV-Trips (Werktag)","orientation":"h","text":["15%","17%","32%","","8%","39%"],"textposition":"inside","x":[14.902363823227132,16.95786228160329,31.86022610483042,0.0,7.50256937307297,38.59198355601233],"y":["Velo (\u003c5 km)","E-Bike (5\u201310 km)","Kombiniert (\u003c10 km)","OV (gr\u00fcn)","OV (gr\u00fcn+gelb)","OV (gr\u00fcn+gelb \u222a \u003c10 km)"],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"range":[0,100],"title":{"text":"% der MIV-Trips (Werktag)"},"tickmode":"linear","dtick":10},"yaxis":{"title":{},"autorange":"reversed"},"margin":{"l":10,"r":10,"t":10,"b":10},"height":220,"showlegend":false,"barmode":"relative"},                        {"responsive": true}                    )                };            </script>        </div>
+    
+    </div>
+    </div>
+    
+    <h2>Nachfrage</h2>
+    <div class="row">
+      <div class="card">
+      <h3>Gesamtnachfrage (Tiles)</h3>
+      
+      <iframe data-src="../5_heiden-grub/heiden-grub_total_demand.html" src="about:blank" width="100%" height="560"
+              loading="lazy" style="border:1px solid #eef2f7;border-radius:8px"></iframe>
+      <div class="small" style="margin-top:.4rem">
+        Falls der Iframe blockiert wird:
+        <a href="../5_heiden-grub/heiden-grub_total_demand.html">im neuen Tab öffnen</a>.
+      </div>
+    
+    </div>
+    </div>
+    <h3>Korridor Nachfrage</h3>
+    <div class="row">
+      <div class="card">
+      <h3>Top MIV-Verkehr Gemeinde Paare</h3>
+      
+      <div>                            <div id="eb073143-4136-404f-83b8-8b7bb048ba09" class="plotly-graph-div" style="height:180px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("eb073143-4136-404f-83b8-8b7bb048ba09")) {                    Plotly.newPlot(                        "eb073143-4136-404f-83b8-8b7bb048ba09",                        [{"branchvalues":"total","customdata":{"dtype":"f8","bdata":"l+3uv4C4l0BLrdRKrVxxQLntcpKtoGxAmhqPRebcaEBzIzdyI79hQAD1hqgElllAGNRlgHDdV0CamZmZmVlQQMtnHpqwnklAupEbuZGbRUDlq4p+U4ZEQIZe6IVeyENAEPzAD\u002fzgQEC358FfH6BAQE4sjz+GBEBAM3v+8upGPkAXeqEXeqE9QC6pkMi4NTtAhi5jK3dSOkAEP\u002fADPzA6QA==","shape":"20, 1"},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"\u003cb\u003e%{label}\u003c\u002fb\u003e\u003cbr\u003eFahrten: %{value:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","ids":["Heiden \u2013 St. Gallen","Eggersriet \u2013 Heiden","Oberegg \u2013 St. Gallen","Heiden \u2013 Herisau","Grub (AR) \u2013 Heiden","Gossau (SG) \u2013 Heiden","Gaiserwald \u2013 Heiden","Heiden \u2013 Rorschach","Reute (AR) \u2013 St. Gallen","Goldach \u2013 Heiden","Heiden \u2013 Wittenbach","Heiden \u2013 Rorschacherberg","Grub (AR) \u2013 Oberegg","Au (SG) \u2013 Eggersriet","St. Gallen \u2013 Wolfhalden","Eggersriet \u2013 Oberegg","Eggersriet \u2013 Wolfhalden","Eggersriet \u2013 St. Margrethen","Heiden \u2013 Kirchberg (SG)","Heiden \u2013 Speicher"],"labels":["Heiden \u2013 St. Gallen","Eggersriet \u2013 Heiden","Oberegg \u2013 St. Gallen","Heiden \u2013 Herisau","Grub (AR) \u2013 Heiden","Gossau (SG) \u2013 Heiden","Gaiserwald \u2013 Heiden","Heiden \u2013 Rorschach","Reute (AR) \u2013 St. Gallen","Goldach \u2013 Heiden","Heiden \u2013 Wittenbach","Heiden \u2013 Rorschacherberg","Grub (AR) \u2013 Oberegg","Au (SG) \u2013 Eggersriet","St. Gallen \u2013 Wolfhalden","Eggersriet \u2013 Oberegg","Eggersriet \u2013 Wolfhalden","Eggersriet \u2013 St. Margrethen","Heiden \u2013 Kirchberg (SG)","Heiden \u2013 Speicher"],"marker":{"coloraxis":"coloraxis","colors":{"dtype":"f8","bdata":"l+3uv4C4l0BLrdRKrVxxQLntcpKtoGxAmhqPRebcaEBzIzdyI79hQAD1hqgElllAGNRlgHDdV0CamZmZmVlQQMtnHpqwnklAupEbuZGbRUDlq4p+U4ZEQIZe6IVeyENAEPzAD\u002fzgQEC358FfH6BAQE4sjz+GBEBAM3v+8upGPkAXeqEXeqE9QC6pkMi4NTtAhi5jK3dSOkAEP\u002fADPzA6QA=="}},"name":"","parents":["","","","","","","","","","","","","","","","","","","",""],"values":{"dtype":"f8","bdata":"l+3uv4C4l0BLrdRKrVxxQLntcpKtoGxAmRqPRebcaEBzIzdyI79hQAD1hqgElllAGNRlgHDdV0CamZmZmVlQQMtnHpqwnklAupEbuZGbRUDlq4p+U4ZEQIZe6IVeyENAEPzAD\u002fzgQEC358FfH6BAQE4sjz+GBEBANHv+8upGPkAXeqEXeqE9QC6pkMi4NTtAhi5jK3dSOkAEP\u002fADPzA6QA=="},"type":"treemap","textinfo":"text","texttemplate":"%{label}\u003cbr\u003e%{value:,.0f}"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"coloraxis":{"colorbar":{"title":{"text":"value"},"tickformat":",.0f"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"legend":{"tracegroupgap":0},"margin":{"t":6,"l":0,"r":0,"b":0},"separators":",.","height":180,"title":{}},                        {"responsive": true}                    )                };            </script>        </div>
+      <details style="margin-top:10px">
+        <summary>Tabelle anzeigen</summary>
+        <div class="content"><table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Herkunft</th>
+      <th>Ziel</th>
+      <th>Fahrten</th>
+      <th>Anteil (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Heiden</td>
+      <td>St. Gallen</td>
+      <td>1518</td>
+      <td>39.2</td>
+    </tr>
+    <tr>
+      <td>Eggersriet</td>
+      <td>Heiden</td>
+      <td>278</td>
+      <td>7.2</td>
+    </tr>
+    <tr>
+      <td>Oberegg</td>
+      <td>St. Gallen</td>
+      <td>229</td>
+      <td>5.9</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Herisau</td>
+      <td>199</td>
+      <td>5.1</td>
+    </tr>
+    <tr>
+      <td>Grub (AR)</td>
+      <td>Heiden</td>
+      <td>142</td>
+      <td>3.7</td>
+    </tr>
+    <tr>
+      <td>Gossau (SG)</td>
+      <td>Heiden</td>
+      <td>102</td>
+      <td>2.6</td>
+    </tr>
+    <tr>
+      <td>Gaiserwald</td>
+      <td>Heiden</td>
+      <td>95</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Rorschach</td>
+      <td>65</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <td>Reute (AR)</td>
+      <td>St. Gallen</td>
+      <td>51</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <td>Goldach</td>
+      <td>Heiden</td>
+      <td>43</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Wittenbach</td>
+      <td>41</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Rorschacherberg</td>
+      <td>40</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Grub (AR)</td>
+      <td>Oberegg</td>
+      <td>34</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <td>Au (SG)</td>
+      <td>Eggersriet</td>
+      <td>33</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <td>St. Gallen</td>
+      <td>Wolfhalden</td>
+      <td>32</td>
+      <td>0.8</td>
+    </tr>
+    <tr>
+      <td>Eggersriet</td>
+      <td>Oberegg</td>
+      <td>30</td>
+      <td>0.8</td>
+    </tr>
+    <tr>
+      <td>Eggersriet</td>
+      <td>Wolfhalden</td>
+      <td>30</td>
+      <td>0.8</td>
+    </tr>
+    <tr>
+      <td>Eggersriet</td>
+      <td>St. Margrethen</td>
+      <td>27</td>
+      <td>0.7</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Kirchberg (SG)</td>
+      <td>26</td>
+      <td>0.7</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Speicher</td>
+      <td>26</td>
+      <td>0.7</td>
+    </tr>
+  </tbody>
+</table></div>
+      </details>
+    
+    </div>
+      <div class="card">
+      <h3>Top MIV-Verkehr Gemeinden</h3>
+      
+      <div>                            <div id="8cf28afa-547b-41b1-9754-22a934658b83" class="plotly-graph-div" style="height:180px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("8cf28afa-547b-41b1-9754-22a934658b83")) {                    Plotly.newPlot(                        "8cf28afa-547b-41b1-9754-22a934658b83",                        [{"branchvalues":"total","customdata":{"dtype":"f8","bdata":"fFDQgfYUp0A6AlfzvLScQC4uiO5TJ39AQ8EcZjpPekDVkP5InFBzQDrDStCTtGtAMlymEEq3YEC61Iek4URgQOSf5mOu31xAaJj1l+dlUkCamZmZmVlQQIhxxiNYlkpA9On7dsDVSEAS8hCRlntHQLY4Spy\u002fAkdAupEbuZGbRUD0Qi\u002f0Qm9FQNb4D4AkKERAhl7ohV7IQ0DK0LNqhf9BQA==","shape":"20, 1"},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"\u003cb\u003e%{label}\u003c\u002fb\u003e\u003cbr\u003eFahrten: %{value:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","ids":["Heiden","St. Gallen","Eggersriet","Oberegg","Grub (AR)","Herisau","Wolfhalden","Gossau (SG)","Gaiserwald","Reute (AR)","Rorschach","St. Margrethen","Wittenbach","Au (SG)","Untereggen","Goldach","Rheineck","Lutzenberg","Rorschacherberg","Speicher"],"labels":["Heiden","St. Gallen","Eggersriet","Oberegg","Grub (AR)","Herisau","Wolfhalden","Gossau (SG)","Gaiserwald","Reute (AR)","Rorschach","St. Margrethen","Wittenbach","Au (SG)","Untereggen","Goldach","Rheineck","Lutzenberg","Rorschacherberg","Speicher"],"marker":{"coloraxis":"coloraxis","colors":{"dtype":"f8","bdata":"fFDQgfYUp0A6AlfzvLScQC4uiO5TJ39AQ8EcZjpPekDVkP5InFBzQDrDStCTtGtAMlymEEq3YEC61Iek4URgQOSf5mOu31xAaJj1l+dlUkCamZmZmVlQQIhxxiNYlkpA9On7dsDVSEAS8hCRlntHQLY4Spy\u002fAkdAupEbuZGbRUD0Qi\u002f0Qm9FQNb4D4AkKERAhl7ohV7IQ0DK0LNqhf9BQA=="}},"name":"","parents":["","","","","","","","","","","","","","","","","","","",""],"values":{"dtype":"f8","bdata":"fFDQgfYUp0A6AlfzvLScQC4uiO5TJ39AQ8EcZjpPekDVkP5InFBzQDrDStCTtGtAMlymEEq3YEC61Iek4URgQOSf5mOu31xAaJj1l+dlUkCamZmZmVlQQIhxxiNYlkpA9On7dsDVSEAS8hCRlntHQLY4Spy\u002fAkdAupEbuZGbRUD0Qi\u002f0Qm9FQNb4D4AkKERAhl7ohV7IQ0DK0LNqhf9BQA=="},"type":"treemap","textinfo":"text","texttemplate":"%{label}\u003cbr\u003e%{value:,.0f}"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"coloraxis":{"colorbar":{"title":{"text":"value"},"tickformat":",.0f"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"legend":{"tracegroupgap":0},"margin":{"t":6,"l":0,"r":0,"b":0},"separators":",.","height":180,"title":{}},                        {"responsive": true}                    )                };            </script>        </div>
+      <details style="margin-top:10px">
+        <summary>Tabelle anzeigen</summary>
+        <div class="content"><table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gemeinde</th>
+      <th>Fahrten</th>
+      <th>Anteil (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Heiden</td>
+      <td>2954</td>
+      <td>38.2</td>
+    </tr>
+    <tr>
+      <td>St. Gallen</td>
+      <td>1837</td>
+      <td>23.7</td>
+    </tr>
+    <tr>
+      <td>Eggersriet</td>
+      <td>498</td>
+      <td>6.4</td>
+    </tr>
+    <tr>
+      <td>Oberegg</td>
+      <td>421</td>
+      <td>5.4</td>
+    </tr>
+    <tr>
+      <td>Grub (AR)</td>
+      <td>309</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <td>Herisau</td>
+      <td>222</td>
+      <td>2.9</td>
+    </tr>
+    <tr>
+      <td>Wolfhalden</td>
+      <td>134</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <td>Gossau (SG)</td>
+      <td>130</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <td>Gaiserwald</td>
+      <td>115</td>
+      <td>1.5</td>
+    </tr>
+    <tr>
+      <td>Reute (AR)</td>
+      <td>74</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Rorschach</td>
+      <td>65</td>
+      <td>0.8</td>
+    </tr>
+    <tr>
+      <td>St. Margrethen</td>
+      <td>53</td>
+      <td>0.7</td>
+    </tr>
+    <tr>
+      <td>Wittenbach</td>
+      <td>50</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <td>Au (SG)</td>
+      <td>47</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <td>Untereggen</td>
+      <td>46</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <td>Goldach</td>
+      <td>43</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <td>Rheineck</td>
+      <td>43</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <td>Lutzenberg</td>
+      <td>40</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>Rorschacherberg</td>
+      <td>40</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>Speicher</td>
+      <td>36</td>
+      <td>0.5</td>
+    </tr>
+  </tbody>
+</table></div>
+      </details>
+    
+    </div>
+    </div>
+    <div class="row">
+      <div class="card">
+      <h3>Top Linien (alle ÖV-Alternativen)</h3>
+      
+      <div>                            <div id="4b9c33b4-6546-4e05-86d7-629e8355182b" class="plotly-graph-div" style="height:180px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("4b9c33b4-6546-4e05-86d7-629e8355182b")) {                    Plotly.newPlot(                        "4b9c33b4-6546-4e05-86d7-629e8355182b",                        [{"branchvalues":"total","customdata":{"dtype":"f8","bdata":"3v7tFEAWokCEyK2fkXRlQLqI6I9U1WBAj4rSxtv5W0Ac16qkIFdSQPqQasuFWVFA1n0i1nTSUEDLIHphBgpNQOKFlUsE8klAf0MkB3ocSUAVGeoIJM1IQDa69YSHU0hA46+bl\u002f+uRUCfXdgmC0FEQChc1\u002f4GEkRAGCiLJpHqQkDL+mTB13ZBQPqt1wYdjkBAN\u002fbWidJdPUC67Ksz5nI5QA==","shape":"20, 1"},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"\u003cb\u003e%{label}\u003c\u002fb\u003e\u003cbr\u003eFahrten: %{value:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","ids":["120 (PostAuto AG)","226 (PostAuto AG)","S4 (Schweizerische S\u00fcdostbahn (sob))","222 (PostAuto AG)","2 (Verkehrsbetriebe der Stadt St.Gallen)","121 (PostAuto AG)","4 (Verkehrsbetriebe der Stadt St.Gallen)","S21 (Appenzeller Bahnen (ab))","VAE (Schweizerische S\u00fcdostbahn (sob))","151 (Regiobus Gossau SG)","S1 (THURBO)","S25 (Appenzeller Bahnen (ab))","IC1 (Schweizerische Bundesbahnen SBB)","229 (PostAuto AG)","1 (Verkehrsbetriebe der Stadt St.Gallen)","RE1 (THURBO)","242 (PostAuto AG)","254 (PostAuto AG)","172 (Verkehrsbetriebe Herisau)","IR13 (Schweizerische Bundesbahnen SBB)"],"labels":["120 (PostAuto AG)","226 (PostAuto AG)","S4 (Schweizerische S\u00fcdostbahn (sob))","222 (PostAuto AG)","2 (Verkehrsbetriebe der Stadt St.Gallen)","121 (PostAuto AG)","4 (Verkehrsbetriebe der Stadt St.Gallen)","S21 (Appenzeller Bahnen (ab))","VAE (Schweizerische S\u00fcdostbahn (sob))","151 (Regiobus Gossau SG)","S1 (THURBO)","S25 (Appenzeller Bahnen (ab))","IC1 (Schweizerische Bundesbahnen SBB)","229 (PostAuto AG)","1 (Verkehrsbetriebe der Stadt St.Gallen)","RE1 (THURBO)","242 (PostAuto AG)","254 (PostAuto AG)","172 (Verkehrsbetriebe Herisau)","IR13 (Schweizerische Bundesbahnen SBB)"],"marker":{"coloraxis":"coloraxis","colors":{"dtype":"f8","bdata":"3v7tFEAWokCEyK2fkXRlQLqI6I9U1WBAj4rSxtv5W0Ac16qkIFdSQPqQasuFWVFA1n0i1nTSUEDLIHphBgpNQOKFlUsE8klAf0MkB3ocSUAVGeoIJM1IQDa69YSHU0hA46+bl\u002f+uRUCfXdgmC0FEQChc1\u002f4GEkRAGCiLJpHqQkDL+mTB13ZBQPqt1wYdjkBAN\u002fbWidJdPUC67Ksz5nI5QA=="}},"name":"","parents":["","","","","","","","","","","","","","","","","","","",""],"values":{"dtype":"f8","bdata":"3v7tFEAWokCEyK2fkXRlQLqI6I9U1WBAkIrSxtv5W0Ac16qkIFdSQPqQasuFWVFA1n0i1nTSUEDLIHphBgpNQOKFlUsE8klAf0MkB3ocSUAUGeoIJM1IQDa69YSHU0hA46+bl\u002f+uRUCfXdgmC0FEQChc1\u002f4GEkRAGCiLJpHqQkDL+mTB13ZBQPqt1wYdjkBAN\u002fbWidJdPUC67Ksz5nI5QA=="},"type":"treemap","textinfo":"text","texttemplate":"%{label}\u003cbr\u003e%{value:,.0f}"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"coloraxis":{"colorbar":{"title":{"text":"value"},"tickformat":",.0f"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"legend":{"tracegroupgap":0},"margin":{"t":6,"l":0,"r":0,"b":0},"separators":",.","height":180,"title":{}},                        {"responsive": true}                    )                };            </script>        </div>
+      <details style="margin-top:10px">
+        <summary>Tabelle anzeigen</summary>
+        <div class="content"><table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Namen</th>
+      <th>Fahrten</th>
+      <th>Anteil (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>120 (PostAuto AG)</td>
+      <td>2315</td>
+      <td>66.4</td>
+    </tr>
+    <tr>
+      <td>226 (PostAuto AG)</td>
+      <td>172</td>
+      <td>4.9</td>
+    </tr>
+    <tr>
+      <td>S4 (Schweizerische Südostbahn (sob))</td>
+      <td>135</td>
+      <td>3.9</td>
+    </tr>
+    <tr>
+      <td>222 (PostAuto AG)</td>
+      <td>112</td>
+      <td>3.2</td>
+    </tr>
+    <tr>
+      <td>2 (Verkehrsbetriebe der Stadt St.Gallen)</td>
+      <td>73</td>
+      <td>2.1</td>
+    </tr>
+    <tr>
+      <td>121 (PostAuto AG)</td>
+      <td>69</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <td>4 (Verkehrsbetriebe der Stadt St.Gallen)</td>
+      <td>67</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <td>S21 (Appenzeller Bahnen (ab))</td>
+      <td>58</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <td>VAE (Schweizerische Südostbahn (sob))</td>
+      <td>52</td>
+      <td>1.5</td>
+    </tr>
+    <tr>
+      <td>151 (Regiobus Gossau SG)</td>
+      <td>50</td>
+      <td>1.4</td>
+    </tr>
+    <tr>
+      <td>S1 (THURBO)</td>
+      <td>50</td>
+      <td>1.4</td>
+    </tr>
+    <tr>
+      <td>S25 (Appenzeller Bahnen (ab))</td>
+      <td>49</td>
+      <td>1.4</td>
+    </tr>
+    <tr>
+      <td>IC1 (Schweizerische Bundesbahnen SBB)</td>
+      <td>43</td>
+      <td>1.2</td>
+    </tr>
+    <tr>
+      <td>229 (PostAuto AG)</td>
+      <td>41</td>
+      <td>1.2</td>
+    </tr>
+    <tr>
+      <td>1 (Verkehrsbetriebe der Stadt St.Gallen)</td>
+      <td>40</td>
+      <td>1.2</td>
+    </tr>
+    <tr>
+      <td>RE1 (THURBO)</td>
+      <td>38</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <td>242 (PostAuto AG)</td>
+      <td>35</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>254 (PostAuto AG)</td>
+      <td>33</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <td>172 (Verkehrsbetriebe Herisau)</td>
+      <td>29</td>
+      <td>0.8</td>
+    </tr>
+    <tr>
+      <td>IR13 (Schweizerische Bundesbahnen SBB)</td>
+      <td>25</td>
+      <td>0.7</td>
+    </tr>
+  </tbody>
+</table></div>
+      </details>
+    
+    </div>
+    </div>
+    <div class="row">
+      <div class="card">
+      <h3>Top Haltestellen (alle ÖV-Alternativen)</h3>
+      
+      <div>                            <div id="3b62a118-0b44-4e39-9ccd-9393ef01e70b" class="plotly-graph-div" style="height:180px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("3b62a118-0b44-4e39-9ccd-9393ef01e70b")) {                    Plotly.newPlot(                        "3b62a118-0b44-4e39-9ccd-9393ef01e70b",                        [{"branchvalues":"total","customdata":{"dtype":"f8","bdata":"hXON5nLVgED7ZKnZVtJ4QNjEGt3kiW1AbSTQmoQ+aECv1QBg3MxlQFJOhFZjFGNA0rkWvn5OYUCxlNamTtFdQGMJJuhd7FxAmr4jg\u002flfVEC1DUAGwG9SQLbSf6LEpk9AZTzGYzy+TUC8GHQZf8tLQJ6SiTnExktAAz1GGW7wSUB8VW5X5RhIQHj3GqXCN0dAbmGHPFY1RkD81ogHPsxEQA==","shape":"20, 1"},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"\u003cb\u003e%{label}\u003c\u002fb\u003e\u003cbr\u003eFahrten: %{value:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","ids":["Heiden, Dunant-Museum","Heiden, Lindenplatz","St. Gallen, Bahnhof","Eggersriet, Gemeindehaus","Heiden, Post","St. Gallen, Theater","St. Gallen, Grossacker","Grub AR, Dorf","St. Gallen","St. Gallen, Marktplatz Bohl","Herisau","Heiden","Grub AR, Ebne Grub","Rorschach","St. Gallen, Unterschachen","St. Gallen, Kantonsspital","St. Gallen, Achslen","St. Gallen, Neudorf","Heiden, Asylstrasse","St. Gallen, Stahl"],"labels":["Heiden, Dunant-Museum","Heiden, Lindenplatz","St. Gallen, Bahnhof","Eggersriet, Gemeindehaus","Heiden, Post","St. Gallen, Theater","St. Gallen, Grossacker","Grub AR, Dorf","St. Gallen","St. Gallen, Marktplatz Bohl","Herisau","Heiden","Grub AR, Ebne Grub","Rorschach","St. Gallen, Unterschachen","St. Gallen, Kantonsspital","St. Gallen, Achslen","St. Gallen, Neudorf","Heiden, Asylstrasse","St. Gallen, Stahl"],"marker":{"coloraxis":"coloraxis","colors":{"dtype":"f8","bdata":"hXON5nLVgED7ZKnZVtJ4QNjEGt3kiW1AbSTQmoQ+aECv1QBg3MxlQFJOhFZjFGNA0rkWvn5OYUCxlNamTtFdQGMJJuhd7FxAmr4jg\u002flfVEC1DUAGwG9SQLbSf6LEpk9AZTzGYzy+TUC8GHQZf8tLQJ6SiTnExktAAz1GGW7wSUB8VW5X5RhIQHj3GqXCN0dAbmGHPFY1RkD81ogHPsxEQA=="}},"name":"","parents":["","","","","","","","","","","","","","","","","","","",""],"values":{"dtype":"f8","bdata":"hXON5nLVgED8ZKnZVtJ4QNjEGt3kiW1AbSTQmoQ+aECv1QBg3MxlQFJOhFZjFGNA0rkWvn5OYUCxlNamTtFdQGMJJuhd7FxAmr4jg\u002flfVEC1DUAGwG9SQLbSf6LEpk9AZTzGYzy+TUC8GHQZf8tLQJ6SiTnExktAAz1GGW7wSUB8VW5X5RhIQHf3GqXCN0dAbmGHPFY1RkD81ogHPsxEQA=="},"type":"treemap","textinfo":"text","texttemplate":"%{label}\u003cbr\u003e%{value:,.0f}"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"coloraxis":{"colorbar":{"title":{"text":"value"},"tickformat":",.0f"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"legend":{"tracegroupgap":0},"margin":{"t":6,"l":0,"r":0,"b":0},"separators":",.","height":180,"title":{}},                        {"responsive": true}                    )                };            </script>        </div>
+      <details style="margin-top:10px">
+        <summary>Tabelle anzeigen</summary>
+        <div class="content"><table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Namen</th>
+      <th>Fahrten</th>
+      <th>Anteil (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Heiden, Dunant-Museum</td>
+      <td>539</td>
+      <td>20.0</td>
+    </tr>
+    <tr>
+      <td>Heiden, Lindenplatz</td>
+      <td>397</td>
+      <td>14.8</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Bahnhof</td>
+      <td>236</td>
+      <td>8.8</td>
+    </tr>
+    <tr>
+      <td>Eggersriet, Gemeindehaus</td>
+      <td>194</td>
+      <td>7.2</td>
+    </tr>
+    <tr>
+      <td>Heiden, Post</td>
+      <td>174</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Theater</td>
+      <td>153</td>
+      <td>5.7</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Grossacker</td>
+      <td>138</td>
+      <td>5.2</td>
+    </tr>
+    <tr>
+      <td>Grub AR, Dorf</td>
+      <td>119</td>
+      <td>4.4</td>
+    </tr>
+    <tr>
+      <td>St. Gallen</td>
+      <td>116</td>
+      <td>4.3</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Marktplatz Bohl</td>
+      <td>81</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <td>Herisau</td>
+      <td>74</td>
+      <td>2.7</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>63</td>
+      <td>2.4</td>
+    </tr>
+    <tr>
+      <td>Grub AR, Ebne Grub</td>
+      <td>59</td>
+      <td>2.2</td>
+    </tr>
+    <tr>
+      <td>Rorschach</td>
+      <td>56</td>
+      <td>2.1</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Unterschachen</td>
+      <td>56</td>
+      <td>2.1</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Kantonsspital</td>
+      <td>52</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Achslen</td>
+      <td>48</td>
+      <td>1.8</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Neudorf</td>
+      <td>46</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <td>Heiden, Asylstrasse</td>
+      <td>44</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Stahl</td>
+      <td>42</td>
+      <td>1.5</td>
+    </tr>
+  </tbody>
+</table></div>
+      </details>
+    
+    </div>
+    </div>
+
+    
+    <h2>Korridor ÖV-Potenzial</h2>
+    <div class="row">
+      <div class="card">
+      <h3>ÖV Potenzial (Grün/Gelb) – Karte</h3>
+      
+      <iframe data-src="../5_heiden-grub/heiden-grub_green_yellow.html" src="about:blank" width="100%" height="560"
+              loading="lazy" style="border:1px solid #eef2f7;border-radius:8px"></iframe>
+      <div class="small" style="margin-top:.4rem">
+        Falls der Iframe blockiert wird:
+        <a href="../5_heiden-grub/heiden-grub_green_yellow.html">im neuen Tab öffnen</a>.
+      </div>
+    
+    </div>
+      <div class="card">
+      <h3>Top ÖV-Potenzial Gemeinde Paare</h3>
+      
+      <div>                            <div id="ce8f7da9-dccb-4090-bdb1-88f496245e2d" class="plotly-graph-div" style="height:180px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("ce8f7da9-dccb-4090-bdb1-88f496245e2d")) {                    Plotly.newPlot(                        "ce8f7da9-dccb-4090-bdb1-88f496245e2d",                        [{"branchvalues":"total","customdata":{"dtype":"f8","bdata":"+K+I6OP5Y0DsXWBHDaUtQLITO7ETOyxASu0ARLXiKUDuXyDAgCQmQLxaZvrZoB9Ay7k+7qMOHEC8lJXsuyQWQOjgvQCQcBRAwmAbp6urE0BwRfF0tAUSQCUszoumnhBAx8JqUm5EDkAcP\u002f0p7nMHQHQxY0Pz3QZAZUP1M3DSBUDi841yVSwFQDY7MSLgQQRAhKTULXSwAkAhMY6r+iQCQA==","shape":"20, 1"},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"\u003cb\u003e%{label}\u003c\u002fb\u003e\u003cbr\u003eFahrten: %{value:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","ids":["Heiden \u2013 St. Gallen","Heiden \u2013 Z\u00fcrich","Eggersriet \u2013 Lutzenberg","Heiden \u2013 Winterthur","Gossau (SG) \u2013 Heiden","Kloten \u2013 Oberegg","Heiden \u2013 Kloten","Heiden \u2013 Rapperswil-Jona","Gaiserwald \u2013 Heiden","Heiden \u2013 Kirchberg (SG)","Flawil \u2013 Heiden","Freienbach \u2013 Heiden","Heiden \u2013 Wittenbach","Heiden \u2013 Herisau","Ebnat-Kappel \u2013 Heiden","Heiden \u2013 Uster","Heiden \u2013 Wetzikon (ZH)","Heiden \u2013 Wattwil","D\u00fcbendorf \u2013 Heiden","Degersheim \u2013 Heiden"],"labels":["Heiden \u2013 St. Gallen","Heiden \u2013 Z\u00fcrich","Eggersriet \u2013 Lutzenberg","Heiden \u2013 Winterthur","Gossau (SG) \u2013 Heiden","Kloten \u2013 Oberegg","Heiden \u2013 Kloten","Heiden \u2013 Rapperswil-Jona","Gaiserwald \u2013 Heiden","Heiden \u2013 Kirchberg (SG)","Flawil \u2013 Heiden","Freienbach \u2013 Heiden","Heiden \u2013 Wittenbach","Heiden \u2013 Herisau","Ebnat-Kappel \u2013 Heiden","Heiden \u2013 Uster","Heiden \u2013 Wetzikon (ZH)","Heiden \u2013 Wattwil","D\u00fcbendorf \u2013 Heiden","Degersheim \u2013 Heiden"],"marker":{"coloraxis":"coloraxis","colors":{"dtype":"f8","bdata":"+K+I6OP5Y0DsXWBHDaUtQLITO7ETOyxASu0ARLXiKUDuXyDAgCQmQLxaZvrZoB9Ay7k+7qMOHEC8lJXsuyQWQOjgvQCQcBRAwmAbp6urE0BwRfF0tAUSQCUszoumnhBAx8JqUm5EDkAcP\u002f0p7nMHQHQxY0Pz3QZAZUP1M3DSBUDi841yVSwFQDY7MSLgQQRAhKTULXSwAkAhMY6r+iQCQA=="}},"name":"","parents":["","","","","","","","","","","","","","","","","","","",""],"values":{"dtype":"f8","bdata":"+K+I6OP5Y0DsXWBHDaUtQLITO7ETOyxASu0ARLXiKUDuXyDAgCQmQLxaZvrZoB9Ay7k+7qMOHEC8lJXsuyQWQOjgvQCQcBRAwmAbp6urE0BwRfF0tAUSQCUszoumnhBAx8JqUm5EDkAdP\u002f0p7nMHQHQxY0Pz3QZAZUP1M3DSBUDi841yVSwFQDY7MSLgQQRAhKTULXSwAkAhMY6r+iQCQA=="},"type":"treemap","textinfo":"text","texttemplate":"%{label}\u003cbr\u003e%{value:,.0f}"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"coloraxis":{"colorbar":{"title":{"text":"value"},"tickformat":",.0f"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"legend":{"tracegroupgap":0},"margin":{"t":6,"l":0,"r":0,"b":0},"separators":",.","height":180,"title":{}},                        {"responsive": true}                    )                };            </script>        </div>
+      <details style="margin-top:10px">
+        <summary>Tabelle anzeigen</summary>
+        <div class="content"><table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Herkunft</th>
+      <th>Ziel</th>
+      <th>Fahrten</th>
+      <th>Anteil (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Heiden</td>
+      <td>St. Gallen</td>
+      <td>160</td>
+      <td>54.6</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Zürich</td>
+      <td>15</td>
+      <td>5.1</td>
+    </tr>
+    <tr>
+      <td>Eggersriet</td>
+      <td>Lutzenberg</td>
+      <td>14</td>
+      <td>4.8</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Winterthur</td>
+      <td>13</td>
+      <td>4.4</td>
+    </tr>
+    <tr>
+      <td>Gossau (SG)</td>
+      <td>Heiden</td>
+      <td>11</td>
+      <td>3.8</td>
+    </tr>
+    <tr>
+      <td>Kloten</td>
+      <td>Oberegg</td>
+      <td>8</td>
+      <td>2.7</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Kloten</td>
+      <td>7</td>
+      <td>2.4</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Rapperswil-Jona</td>
+      <td>6</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <td>Gaiserwald</td>
+      <td>Heiden</td>
+      <td>5</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Kirchberg (SG)</td>
+      <td>5</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <td>Flawil</td>
+      <td>Heiden</td>
+      <td>5</td>
+      <td>1.5</td>
+    </tr>
+    <tr>
+      <td>Freienbach</td>
+      <td>Heiden</td>
+      <td>4</td>
+      <td>1.4</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Wittenbach</td>
+      <td>4</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Herisau</td>
+      <td>3</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Ebnat-Kappel</td>
+      <td>Heiden</td>
+      <td>3</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Uster</td>
+      <td>3</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Wetzikon (ZH)</td>
+      <td>3</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>Wattwil</td>
+      <td>3</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <td>Dübendorf</td>
+      <td>Heiden</td>
+      <td>2</td>
+      <td>0.8</td>
+    </tr>
+    <tr>
+      <td>Degersheim</td>
+      <td>Heiden</td>
+      <td>2</td>
+      <td>0.8</td>
+    </tr>
+  </tbody>
+</table></div>
+      </details>
+    
+    </div>
+    </div>
+    <div class="row">
+      <div class="card">
+      <h3>Top ÖV-Potenzial Gemeinden</h3>
+      
+      <div>                            <div id="2217ea1e-2091-4205-92d6-baefb3423d53" class="plotly-graph-div" style="height:180px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("2217ea1e-2091-4205-92d6-baefb3423d53")) {                    Plotly.newPlot(                        "2217ea1e-2091-4205-92d6-baefb3423d53",                        [{"branchvalues":"total","customdata":{"dtype":"f8","bdata":"1I6yZRGkcED4r4jo4\u002fljQKIXeqEX+i1AQ4pS9L7XLUDsXWBHDaUtQLITO7ETOyxAEj\u002fF\u002fIK+K0DuXyDAgCQmQFy9\u002ftFC1SRAvJSV7LskFkDMkHX3kJ0UQOjgvQCQcBRAwmAbp6urE0AkLM6Lpp4QQMfCalJuRA5AUZ1FjUe2C0Bb23CSResIQBw\u002f\u002fSnucwdAdDFjQ\u002fPdBkBlQ\u002fUzcNIFQA==","shape":"20, 1"},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"\u003cb\u003e%{label}\u003c\u002fb\u003e\u003cbr\u003eFahrten: %{value:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","ids":["Heiden","St. Gallen","Eggersriet","Kloten","Z\u00fcrich","Lutzenberg","Winterthur","Gossau (SG)","Oberegg","Rapperswil-Jona","Flawil","Gaiserwald","Kirchberg (SG)","Freienbach","Wittenbach","Wattwil","D\u00fcbendorf","Herisau","Ebnat-Kappel","Uster"],"labels":["Heiden","St. Gallen","Eggersriet","Kloten","Z\u00fcrich","Lutzenberg","Winterthur","Gossau (SG)","Oberegg","Rapperswil-Jona","Flawil","Gaiserwald","Kirchberg (SG)","Freienbach","Wittenbach","Wattwil","D\u00fcbendorf","Herisau","Ebnat-Kappel","Uster"],"marker":{"coloraxis":"coloraxis","colors":{"dtype":"f8","bdata":"1I6yZRGkcED4r4jo4\u002fljQKIXeqEX+i1AQ4pS9L7XLUDsXWBHDaUtQLITO7ETOyxAEj\u002fF\u002fIK+K0DuXyDAgCQmQFy9\u002ftFC1SRAvJSV7LskFkDMkHX3kJ0UQOjgvQCQcBRAwmAbp6urE0AkLM6Lpp4QQMfCalJuRA5AUZ1FjUe2C0Bb23CSResIQBw\u002f\u002fSnucwdAdDFjQ\u002fPdBkBlQ\u002fUzcNIFQA=="}},"name":"","parents":["","","","","","","","","","","","","","","","","","","",""],"values":{"dtype":"f8","bdata":"1I6yZRGkcED4r4jo4\u002fljQKIXeqEX+i1AQ4pS9L7XLUDsXWBHDaUtQLITO7ETOyxAEj\u002fF\u002fIK+K0DuXyDAgCQmQFy9\u002ftFC1SRAvJSV7LskFkDMkHX3kJ0UQOjgvQCQcBRAwmAbp6urE0AkLM6Lpp4QQMfCalJuRA5AUZ1FjUe2C0Ba23CSResIQB0\u002f\u002fSnucwdAdDFjQ\u002fPdBkBlQ\u002fUzcNIFQA=="},"type":"treemap","textinfo":"text","texttemplate":"%{label}\u003cbr\u003e%{value:,.0f}"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"coloraxis":{"colorbar":{"title":{"text":"value"},"tickformat":",.0f"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"legend":{"tracegroupgap":0},"margin":{"t":6,"l":0,"r":0,"b":0},"separators":",.","height":180,"title":{}},                        {"responsive": true}                    )                };            </script>        </div>
+      <details style="margin-top:10px">
+        <summary>Tabelle anzeigen</summary>
+        <div class="content"><table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gemeinde</th>
+      <th>Fahrten</th>
+      <th>Anteil (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Heiden</td>
+      <td>266</td>
+      <td>45.5</td>
+    </tr>
+    <tr>
+      <td>St. Gallen</td>
+      <td>160</td>
+      <td>27.3</td>
+    </tr>
+    <tr>
+      <td>Eggersriet</td>
+      <td>15</td>
+      <td>2.6</td>
+    </tr>
+    <tr>
+      <td>Kloten</td>
+      <td>15</td>
+      <td>2.6</td>
+    </tr>
+    <tr>
+      <td>Zürich</td>
+      <td>15</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <td>Lutzenberg</td>
+      <td>14</td>
+      <td>2.4</td>
+    </tr>
+    <tr>
+      <td>Winterthur</td>
+      <td>14</td>
+      <td>2.4</td>
+    </tr>
+    <tr>
+      <td>Gossau (SG)</td>
+      <td>11</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <td>Oberegg</td>
+      <td>10</td>
+      <td>1.8</td>
+    </tr>
+    <tr>
+      <td>Rapperswil-Jona</td>
+      <td>6</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <td>Flawil</td>
+      <td>5</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <td>Gaiserwald</td>
+      <td>5</td>
+      <td>0.9</td>
+    </tr>
+    <tr>
+      <td>Kirchberg (SG)</td>
+      <td>5</td>
+      <td>0.8</td>
+    </tr>
+    <tr>
+      <td>Freienbach</td>
+      <td>4</td>
+      <td>0.7</td>
+    </tr>
+    <tr>
+      <td>Wittenbach</td>
+      <td>4</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <td>Wattwil</td>
+      <td>3</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <td>Dübendorf</td>
+      <td>3</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>Herisau</td>
+      <td>3</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>Ebnat-Kappel</td>
+      <td>3</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>Uster</td>
+      <td>3</td>
+      <td>0.5</td>
+    </tr>
+  </tbody>
+</table></div>
+      </details>
+    
+    </div>
+    </div>
+    <div class="row">
+      <div class="card">
+      <h3>Top Linien (gute ÖV-Alternative)</h3>
+      
+      <div>                            <div id="5fd42b32-791b-4abf-8f50-16f34ffdf4c4" class="plotly-graph-div" style="height:180px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("5fd42b32-791b-4abf-8f50-16f34ffdf4c4")) {                    Plotly.newPlot(                        "5fd42b32-791b-4abf-8f50-16f34ffdf4c4",                        [{"branchvalues":"total","customdata":{"dtype":"f8","bdata":"G8kSufEWZ0CftMwRLSApQO4dyGQj2yRAIdJXKXg1JEAkqjYOSZAhQCd+bUdqSyBAV49+iHHyF0C95Vu+5VsXQEFOHFM3kRNApopXXdRqEEAZ+wgzDv8NQBatMDyLzQxAtyzZEdPECEAcl\u002flI43EHQMJnZXc2IwFAhM+sGdmp\u002fD+uhWXe5qP4P1gVukWOA\u002fY\u002fWBW6RY4D9j+WMY53YmTxPw==","shape":"20, 1"},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"\u003cb\u003e%{label}\u003c\u002fb\u003e\u003cbr\u003eFahrten: %{value:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","ids":["120 (PostAuto AG)","121 (PostAuto AG)","IC5 (Schweizerische Bundesbahnen SBB)","7 (Verkehrsbetriebe der Stadt St.Gallen)","IC1 (Schweizerische Bundesbahnen SBB)","VAE (Schweizerische S\u00fcdostbahn (sob))","S4 (Schweizerische S\u00fcdostbahn (sob))","222 (PostAuto AG)","4 (Verkehrsbetriebe der Stadt St.Gallen)","226 (PostAuto AG)","1 (Verkehrsbetriebe der Stadt St.Gallen)","IR13 (Schweizerische Bundesbahnen SBB)","151 (Regiobus Gossau SG)","EC (Schweizerische Bundesbahnen SBB)","S2 (THURBO)","S5 (Schweizerische Bundesbahnen SBB)","S1 (THURBO)","S25 (Appenzeller Bahnen (ab))","S7 (THURBO)","230 (PostAuto AG)"],"labels":["120 (PostAuto AG)","121 (PostAuto AG)","IC5 (Schweizerische Bundesbahnen SBB)","7 (Verkehrsbetriebe der Stadt St.Gallen)","IC1 (Schweizerische Bundesbahnen SBB)","VAE (Schweizerische S\u00fcdostbahn (sob))","S4 (Schweizerische S\u00fcdostbahn (sob))","222 (PostAuto AG)","4 (Verkehrsbetriebe der Stadt St.Gallen)","226 (PostAuto AG)","1 (Verkehrsbetriebe der Stadt St.Gallen)","IR13 (Schweizerische Bundesbahnen SBB)","151 (Regiobus Gossau SG)","EC (Schweizerische Bundesbahnen SBB)","S2 (THURBO)","S5 (Schweizerische Bundesbahnen SBB)","S1 (THURBO)","S25 (Appenzeller Bahnen (ab))","S7 (THURBO)","230 (PostAuto AG)"],"marker":{"coloraxis":"coloraxis","colors":{"dtype":"f8","bdata":"G8kSufEWZ0CftMwRLSApQO4dyGQj2yRAIdJXKXg1JEAkqjYOSZAhQCd+bUdqSyBAV49+iHHyF0C95Vu+5VsXQEFOHFM3kRNApopXXdRqEEAZ+wgzDv8NQBatMDyLzQxAtyzZEdPECEAcl\u002flI43EHQMJnZXc2IwFAhM+sGdmp\u002fD+uhWXe5qP4P1gVukWOA\u002fY\u002fWBW6RY4D9j+WMY53YmTxPw=="}},"name":"","parents":["","","","","","","","","","","","","","","","","","","",""],"values":{"dtype":"f8","bdata":"G8kSufEWZ0CftMwRLSApQO4dyGQj2yRAIdJXKXg1JEAkqjYOSZAhQCd+bUdqSyBAVo9+iHHyF0C+5Vu+5VsXQEFOHFM3kRNApopXXdRqEEAZ+wgzDv8NQBatMDyLzQxAtyzZEdPECEAdl\u002flI43EHQMJnZXc2IwFAhM+sGdmp\u002fD+uhWXe5qP4P1gVukWOA\u002fY\u002fWBW6RY4D9j+WMY53YmTxPw=="},"type":"treemap","textinfo":"text","texttemplate":"%{label}\u003cbr\u003e%{value:,.0f}"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"coloraxis":{"colorbar":{"title":{"text":"value"},"tickformat":",.0f"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"legend":{"tracegroupgap":0},"margin":{"t":6,"l":0,"r":0,"b":0},"separators":",.","height":180,"title":{}},                        {"responsive": true}                    )                };            </script>        </div>
+      <details style="margin-top:10px">
+        <summary>Tabelle anzeigen</summary>
+        <div class="content"><table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Namen</th>
+      <th>Fahrten</th>
+      <th>Anteil (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>120 (PostAuto AG)</td>
+      <td>185</td>
+      <td>66.4</td>
+    </tr>
+    <tr>
+      <td>121 (PostAuto AG)</td>
+      <td>13</td>
+      <td>4.5</td>
+    </tr>
+    <tr>
+      <td>IC5 (Schweizerische Bundesbahnen SBB)</td>
+      <td>10</td>
+      <td>3.7</td>
+    </tr>
+    <tr>
+      <td>7 (Verkehrsbetriebe der Stadt St.Gallen)</td>
+      <td>10</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <td>IC1 (Schweizerische Bundesbahnen SBB)</td>
+      <td>9</td>
+      <td>3.2</td>
+    </tr>
+    <tr>
+      <td>VAE (Schweizerische Südostbahn (sob))</td>
+      <td>8</td>
+      <td>2.9</td>
+    </tr>
+    <tr>
+      <td>S4 (Schweizerische Südostbahn (sob))</td>
+      <td>6</td>
+      <td>2.2</td>
+    </tr>
+    <tr>
+      <td>222 (PostAuto AG)</td>
+      <td>6</td>
+      <td>2.1</td>
+    </tr>
+    <tr>
+      <td>4 (Verkehrsbetriebe der Stadt St.Gallen)</td>
+      <td>5</td>
+      <td>1.8</td>
+    </tr>
+    <tr>
+      <td>226 (PostAuto AG)</td>
+      <td>4</td>
+      <td>1.5</td>
+    </tr>
+    <tr>
+      <td>1 (Verkehrsbetriebe der Stadt St.Gallen)</td>
+      <td>4</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <td>IR13 (Schweizerische Bundesbahnen SBB)</td>
+      <td>4</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <td>151 (Regiobus Gossau SG)</td>
+      <td>3</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <td>EC (Schweizerische Bundesbahnen SBB)</td>
+      <td>3</td>
+      <td>1.1</td>
+    </tr>
+    <tr>
+      <td>S2 (THURBO)</td>
+      <td>2</td>
+      <td>0.8</td>
+    </tr>
+    <tr>
+      <td>S5 (Schweizerische Bundesbahnen SBB)</td>
+      <td>2</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <td>S1 (THURBO)</td>
+      <td>2</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <td>S25 (Appenzeller Bahnen (ab))</td>
+      <td>1</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>S7 (THURBO)</td>
+      <td>1</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>230 (PostAuto AG)</td>
+      <td>1</td>
+      <td>0.4</td>
+    </tr>
+  </tbody>
+</table></div>
+      </details>
+    
+    </div>
+    </div>
+    <div class="row">
+      <div class="card">
+      <h3>Top Haltestellen (gute ÖV-Alternative)</h3>
+      
+      <div>                            <div id="f00590c3-b2a3-441b-b4dc-78e522c8fb70" class="plotly-graph-div" style="height:180px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("f00590c3-b2a3-441b-b4dc-78e522c8fb70")) {                    Plotly.newPlot(                        "f00590c3-b2a3-441b-b4dc-78e522c8fb70",                        [{"branchvalues":"total","customdata":{"dtype":"f8","bdata":"Latl381FU0BNON3LWds\u002fQOtUk8SpqzVAMcsmDTtlNEB+qCFJ\u002fXUyQEgMEsk2Py5AjtzIjdxIH0AyZuHbQm0YQFLNQY2NMhZAz5DAJ1P9FEDBD\u002fzAD\u002fwTQKpVniC8dRJAifxGMqRLEkBF1X\u002fJhLsRQCl78rcgkwxAjMd4jMd4CkC6gj6BaqwJQGansMxe\u002fwNAlx2f0xCpA0B3Vs7ScQT\u002fPw==","shape":"20, 1"},"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"\u003cb\u003e%{label}\u003c\u002fb\u003e\u003cbr\u003eFahrten: %{value:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","ids":["Heiden, Dunant-Museum","St. Gallen, Marktplatz Bohl","St. Gallen, Bahnhof","St. Gallen, Grossacker","Heiden, Lindenplatz","St. Gallen","St. Gallen, Achslen","St. Gallen Bruggen","Winterthur","Heiden, Post","Eggersriet, Gemeindehaus","Rorschach","Rapperswil SG","Heiden","St. Gallen, Theater","Heiden, Bahnhof","Z\u00fcrich Flughafen","St. Gallen, Stahl","Z\u00fcrich HB","St. Gallen, Lerchenfeld"],"labels":["Heiden, Dunant-Museum","St. Gallen, Marktplatz Bohl","St. Gallen, Bahnhof","St. Gallen, Grossacker","Heiden, Lindenplatz","St. Gallen","St. Gallen, Achslen","St. Gallen Bruggen","Winterthur","Heiden, Post","Eggersriet, Gemeindehaus","Rorschach","Rapperswil SG","Heiden","St. Gallen, Theater","Heiden, Bahnhof","Z\u00fcrich Flughafen","St. Gallen, Stahl","Z\u00fcrich HB","St. Gallen, Lerchenfeld"],"marker":{"coloraxis":"coloraxis","colors":{"dtype":"f8","bdata":"Latl381FU0BNON3LWds\u002fQOtUk8SpqzVAMcsmDTtlNEB+qCFJ\u002fXUyQEgMEsk2Py5AjtzIjdxIH0AyZuHbQm0YQFLNQY2NMhZAz5DAJ1P9FEDBD\u002fzAD\u002fwTQKpVniC8dRJAifxGMqRLEkBF1X\u002fJhLsRQCl78rcgkwxAjMd4jMd4CkC6gj6BaqwJQGansMxe\u002fwNAlx2f0xCpA0B3Vs7ScQT\u002fPw=="}},"name":"","parents":["","","","","","","","","","","","","","","","","","","",""],"values":{"dtype":"f8","bdata":"Latl381FU0BNON3LWds\u002fQOtUk8SpqzVAMcsmDTtlNEB+qCFJ\u002fXUyQEgMEsk2Py5AjtzIjdxIH0AyZuHbQm0YQFLNQY2NMhZAz5DAJ1P9FEDBD\u002fzAD\u002fwTQKpVniC8dRJAifxGMqRLEkBF1X\u002fJhLsRQCl78rcgkwxAjMd4jMd4CkC6gj6BaqwJQGansMxe\u002fwNAlx2f0xCpA0B3Vs7ScQT\u002fPw=="},"type":"treemap","textinfo":"text","texttemplate":"%{label}\u003cbr\u003e%{value:,.0f}"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"coloraxis":{"colorbar":{"title":{"text":"value"},"tickformat":",.0f"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"legend":{"tracegroupgap":0},"margin":{"t":6,"l":0,"r":0,"b":0},"separators":",.","height":180,"title":{}},                        {"responsive": true}                    )                };            </script>        </div>
+      <details style="margin-top:10px">
+        <summary>Tabelle anzeigen</summary>
+        <div class="content"><table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Namen</th>
+      <th>Fahrten</th>
+      <th>Anteil (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Heiden, Dunant-Museum</td>
+      <td>77</td>
+      <td>31.5</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Marktplatz Bohl</td>
+      <td>32</td>
+      <td>13.0</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Bahnhof</td>
+      <td>22</td>
+      <td>8.8</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Grossacker</td>
+      <td>20</td>
+      <td>8.3</td>
+    </tr>
+    <tr>
+      <td>Heiden, Lindenplatz</td>
+      <td>18</td>
+      <td>7.5</td>
+    </tr>
+    <tr>
+      <td>St. Gallen</td>
+      <td>15</td>
+      <td>6.2</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Achslen</td>
+      <td>8</td>
+      <td>3.2</td>
+    </tr>
+    <tr>
+      <td>St. Gallen Bruggen</td>
+      <td>6</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <td>Winterthur</td>
+      <td>6</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <td>Heiden, Post</td>
+      <td>5</td>
+      <td>2.1</td>
+    </tr>
+    <tr>
+      <td>Eggersriet, Gemeindehaus</td>
+      <td>5</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <td>Rorschach</td>
+      <td>5</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <td>Rapperswil SG</td>
+      <td>5</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <td>Heiden</td>
+      <td>4</td>
+      <td>1.8</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Theater</td>
+      <td>4</td>
+      <td>1.5</td>
+    </tr>
+    <tr>
+      <td>Heiden, Bahnhof</td>
+      <td>3</td>
+      <td>1.4</td>
+    </tr>
+    <tr>
+      <td>Zürich Flughafen</td>
+      <td>3</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Stahl</td>
+      <td>2</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Zürich HB</td>
+      <td>2</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>St. Gallen, Lerchenfeld</td>
+      <td>2</td>
+      <td>0.8</td>
+    </tr>
+  </tbody>
+</table></div>
+      </details>
+    
+    </div>
+    </div>
+
+    
+    <h2>Korridor ÖV-Qualität</h2>
+    <div class="row">
+      <div class="card">
+      <h3>Verhältnis-Karte (Ratio)</h3>
+      
+      <iframe data-src="../5_heiden-grub/heiden-grub_ratio.html" src="about:blank" width="100%" height="560"
+              loading="lazy" style="border:1px solid #eef2f7;border-radius:8px"></iframe>
+      <div class="small" style="margin-top:.4rem">
+        Falls der Iframe blockiert wird:
+        <a href="../5_heiden-grub/heiden-grub_ratio.html">im neuen Tab öffnen</a>.
+      </div>
+    
+    </div>
+      <div class="card">
+      <h3>ÖV-Qualität mit Detail</h3>
+      
+      <img alt='ov-quality-detail' src='data:image/png;base64,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'>
+    
+    </div>
+    </div>
+
+    
+    <h2>Velo und E-Bike Potenzial</h2>
+    <div class="row">
+      <div class="card">
+      <h3>Triplängen­verteilung</h3>
+      
+      <div>                            <div id="1bfa2048-6749-4546-afc8-48bb623c59b0" class="plotly-graph-div" style="height:220px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("1bfa2048-6749-4546-afc8-48bb623c59b0")) {                    Plotly.newPlot(                        "1bfa2048-6749-4546-afc8-48bb623c59b0",                        [{"histfunc":"sum","hovertemplate":"Green\u003cbr\u003eDistanz: %{x} km\u003cbr\u003eFahrten: %{y:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"green","line":{"color":"white","width":0}},"name":"Green","x":[],"xbins":{"end":50.0,"size":1.0,"start":0.0},"y":[],"type":"histogram"},{"histfunc":"sum","hovertemplate":"Yellow\u003cbr\u003eDistanz: %{x} km\u003cbr\u003eFahrten: %{y:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"gold","line":{"color":"white","width":0}},"name":"Yellow","x":{"dtype":"f8","bdata":"Yr5H1XdCQkCJTONJvWZCQFUt659wY0BAZK3DkZEbHUAX7P7NApRCQMPOSDpyvEdAP7gPQs4mREBpWpEBlp5CQMFQtFLkoEJAgYNdgOozQkDcesfgQWw6QNgB1ej1fjpA4m1Zq0+xOUA\u002fkcyVNYo6QPO86P2TVT1A5pMLBWrIOUB6TgF0tow1QFchGSZhyjRAzklPAU7qMUBCDuUegrwyQMaamqX\u002fyDNAiV43MqQWMUDpbiPjKW0vQKRMD+7N4i1AbzqPgD4zLUAlbOkQb+IpQHVWn3q1wyxACiBItVTfKkCbMs12RycnQLOdIIHawCRAd1fbIKW9JkBpoNea\u002f9AiQNuLU\u002ffH7TlAjx1gsILIQUApSbXOsRE6QC+wXwqJW0JAiUzjSb1mQkD\u002fzrkaokBCQMhNbnBUjEFAbczCGYUuQkC3CBEMihNIQLIgg37jiiBAlkr8SRwnJUDbi1P3x+05QGAV2MfSOTtAsUxTiY9zRECyIIN+44ogQC+5b4cDbCJAyE1ucFSMQUBcsRzLN3xCQKMf59triEJAuo+k9bvYSEA+SZlmVLNIQIBRwLVs1T5APKH5dwcGNUBZAo4tt3QvQDEo1J7ItSxAl8XAzjgkKkCAuHEoTZ8oQDP+AH2vJSZApYRjsToDQ0A="},"xbins":{"end":50.0,"size":1.0,"start":0.0},"y":{"dtype":"f8","bdata":"CZccPo9k1z8Jlxw+j2TXP1rbcJJF6+g\u002fWttwkkXr6D9oiFGsndH9P2qIUayd0e0\u002fWttwkkXr6D9PDv9KP1zqP08O\u002f0o\u002fXOo\u002fQfMfhbc67j9P7MRO7MQUQFrbcJJF6+g\u002fs6nocYaP4D+VHEWM27ztPx0TjdaCiu4\u002fHRON1oKK7j\u002faR6Ji3G3vP12145pvWuE\u002fPGROijpA8D+iGqvjWWHpP+fcQXvGBvE\u002fVI0rJJbi5z9WCXvLDHfoP0FOhHuqfeY\u002fMws+O9zl8D8lsibS1HTzP0OWgUncyvs\u002fyWQ8ukc\u002f6z8dwrsbt67xP1q+eWUlwvQ\u002fuLfZP5eb+T8VgRo6BKsAQB+7ayW8FOA\u002fswfUWKBgBkCWHvuDvKcAQJIR3woqfe8\u002fHprlvROAEUBkSs5P\u002fRL9PwDpuFPj7vo\u002f2H26\u002f3trDEAQCTIjNj8kQNnAGl5VQxdAaBHATvra\u002fT+GJn6XDLL9P4yuvLUZCApAK7H1hN58R0D8c5neSqlAQFSVjLToivY\u002fjtzIjdxIL0DYXg6LQhLtP9heDotCEu0\u002f2F4Oi0IS7T\u002fYXg6LQhLtP9heDotCEu0\u002f2F4Oi0IS7T\u002fYXg6LQhLtP9heDotCEu0\u002fTw7\u002fSj9c6j+Vcihj5NIBQFrbcJJF6+g\u002fUaLr1mqM1D9YuJSfic\u002frP1i4lJ+Jz+s\u002fWLiUn4nP6z9YuJSfic\u002frP0cSGz5TWe0\u002fuKV5TN7Y4D9YuJSfic\u002frP1i4lJ+Jz+s\u002fWLiUn4nP6z9YuJSfic\u002frP1i4lJ+Jz\u002fs\u002fWttwkkXr6D\u002fq2P02IQniP1rbcJJF6+g\u002fWttwkkXr6D9a23CSRevoP4AE\u002fGCEH+Q\u002fPbGKzb285D99G0cKVN3sP30bRwpU3ew\u002ffRtHClTd7D99G0cKVN38P\u002fNg6IWmD+0\u002fdc3KMUod4z8gQrNZtO\u002f8PyBCs1m07+w\u002fIEKzWbTv7D+ip7rUk5DFP2iIUayd0f0\u002faohRrJ3R7T9qiFGsndHtP1rbcJJF6+g\u002fWLiUn4nP6z8EP\u002fADP\u002fASQE8O\u002f0o\u002fXOo\u002fx8JqUm5EDkDiAO5oYELgP9xaIhTkvuQ\u002fPzh0dp0ZyD9a23CSRevoP1rbcJJF6+g\u002faohRrJ3R7T9a23CSRev4P+bEvs3XsN4\u002fbdkqmeqc3D\u002flOeIELnfYPxD8wA\u002f8wBBABT\u002fwAz\u002fw6z9SlKc3O6bcP2hMDI5nmto\u002faEwMjmea2j9hmqE0EnLhP5IM0OPqRuc\u002fkgzQ4+pG5z9YuJSfic\u002frP1i4lJ+Jz\u002fs\u002f9aHyNBPoBECy\u002f7YCtbjyPx0\u002f\u002fSnucwdAv+xnsI7jCEBm+Ev68pQDQJJ9OdmVtCVAoQ6tMBocLUCluWp0gd8dQB0TjdaCiu4\u002fHRON1oKK7j9YuJSfic\u002frP1i4lJ+Jz+s\u002fWLiUn4nP6z8QAHCCKLnXPwiyWE\u002fG\u002f9Q\u002f"},"type":"histogram"},{"histfunc":"sum","hovertemplate":"Red\u003cbr\u003eDistanz: %{x} km\u003cbr\u003eFahrten: %{y:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"red","line":{"color":"white","width":0}},"name":"Red","x":{"dtype":"f8","bdata":"7Oi21WAWJ0CFBg2V6w4qQCFMW6WZQyhAGwm7MQ7nIkDK48cjOL4jQGEn2bUu6htApp9YQ9CMIkAr78hCVFkZQN1klFVYMBlAaQkn12tVIUDdWKTjutYeQAZggmKNWRdAhjrOxQrvGEA5f9k\u002fY5oWQC8Igo2pPyhAIDYj+I0YLED1hLk6f3cpQJNoJMwZQCpAHbqlZOdsKUCh6tvg5v4qQJPIlvjnpipAe+z7luZ1K0A+a2IDqIsqQENwoCxvJy9Awf9mW0uHNEA7VY9X5SU2QATAG\u002fNjtjFAzklPAU7qMUBe4zPY80syQEIO5R6CvDJAizLwxpghM0Ay8qodx7MyQFaQv4zifDNAxpqapf\u002fIM0D3wtCcCTE0QNSH11KAuDNAOyBSuf8bN0A\u002fuA9CziZEQIoopmOMfEZAw3+xPLE8QkBqPmGdbs4tQLoJkp3ZLh5AoD5Pg\u002fiOIEAYvr+QSHgjQKA6Xp9r6CBAIELeif3\u002fJkDqgKsQMFchQLdnYv7ADCZA\u002fiDwgHLjI0BpoNea\u002f9AiQFUnIDXlpyNAUlF2qKGiIkAPX0gsqTMkQMLoXSa3fCRArbLTbnHyK0AyJDznnxQoQGRh7VMwnCRAYd\u002fHYAICKEB4VAnEkXklQKw\u002fyGP\u002fViRAeigmQlTkJUCNTQcL3lYoQGb64SnTPilAua9rrSxZKUA9Rux9EwUrQKAniKYPMCtAoHSi0I5vKUBw7VHb5lgkQGpo9GDeFBVAUB206WYvEEAxHzHDtnwKQGV7gJ2S9g1AM+1nizytCUDXYuyC\u002fPQPQN1YpOO61h5ARuIsQHDoJUD4g02oPQkuQCOJVhAuJCtAM\u002fGI0bvfKEC9SP6h7FgjQPSKKamw3SRApZ1K1c8fJEAq8pmugygmQGWYz7vTFSFAj9ivq9jpIEDjImZfBNkUQKLXO8xKhRFA6E1O6V4mEUBOLeEeYAwwQHmTIT7fKBxAk6QQqRIPQUBqweMYZNpBQIleNzKkFjFAxsAJ4eh3MUCKGdiGll0yQC14PrEx7jJAxvOJ46usMUAFDNC8ghAyQMWv3iErpzFANHHI5DVwMkCB13y1IxU1QPQElbxbQypA4TM+EIPKQkDkbieRK1BCQFdI9V9TB0VABBmPADeKQECpkehy3Qs\u002fQCMEPRDR+j1AHWn6h052NUD9v3GnT8Q0QAWG9HRwUDVAbiiEjpXnNkDC++aMDa03QDmEa6braTRAcVHfSzAAN0A8fPdJvu81QCdSYyCKBzRALXg+sTHuMkAFetdPTxMyQKB+zh8R6DFAxvnxGyUlMEBhHCwFMtQvQN8MjS9F2S1AIDYj+I0YLEARZRfo44ErQFaX7mgbCSpAqwB5ufjCKUC0PZWX9eonQLdnYv7ADCZAMiQ8558UKECa6PxUrHUkQEPrdDCU6iVAYMlTgvYQKEBxBEzxdX8kQJa+xcxt0SRAYKCjm3fRI0CoQJqzOusYQGpo9GDeFBVA40oZ8HZdEUCdmx33HikNQK957A8WthFAFnrfCZS\u002fEEC8gLtHJa1CQGO2FqGp\u002fTtAsOSVUm4YO0DibGLn3QY5QNRE9RJrGDNADLyZyFvYIECO+usLrdE\u002fQHDJMhNne0NAzy1gsVZUNkAbDAwleEpAQA6rU3QgGjVAXcqr\u002fm12NECqdcOLNpQzQJEKC3vJATJA6NIngeXuMEAmZyFVNYIpQEI+gFcYBChApaBRbsGiJ0A+lvCMs8klQP4g8IBy4yNAYY+1t4GmI0BQWRrDqT0iQB7xeaMPIBRAUB206WYvEECDkbcHe04HQBsjreai30hAAUTnQ7jGMkBdPZDUFiU6QGH92U3KIUJAYQ+t3\u002fHqNEC1HJjUs0Y8QLbdyeaDIDxAwztc4U4pNECEkj8uznc0QErr9PCj7jRApQ12ZbzIM0AfwNdrazk0QCc5+WhWPTZANyu3oQdeM0AQI3K\u002f+hA0QCNLSThQlDVAq7US7LaPMkDCp\u002fDem60zQLRh9bDRhjRAxvOJ46usMUAOq1N0IBo1QN4I68xl1TBAlPLPIudxNEDPHwpTcocwQIhqGV2NUC9ACun21kTNK0BJJ0zvtLc2QNy+\u002fDjxMStA9YS5On93KUCTyJb456YqQDRfVl3\u002fqihAfbksYTbmJ0C7ulc\u002ftZwqQK1YcTdWlyZA8f3hUi\u002f+J0BkYe1TMJwkQL5d66dPXyJAR1XAl\u002fowJEAEiryfoP8gQKPcak0j5CJAIW0chw+jHEClz3qUD94gQBQwVHvsvBxAhG7ppsjhE0C\u002fsnfHrGAZQCZqXfwo5B5A50tJe5mZIUCozhL9blMRQDEfMcO2fApAUg5q3yAsAUDS\u002fCFbDOoJQEGKRFYM1PU\u002fR7MxiFCvAEAYKyMsXXf7P6dZaumCATRAJodx8DhPPkA5uM2MQww3QCkspDDC1jZAGH2IBxhzSEDNAPhnR1A\u002fQKk2oajOBUNADrfZzEszQUCuSy2NFz9BQNxJ+bv8GEBA4XTHpls6OUCyuRICv5s4QMtIokAu\u002fkBAtv4tpeReR0A5En1fPNstQCH9YQTyTRpASqWok1CQGEC4p6xjeJgWQMaevPmOehZAsBTfhLUNIUCSTZ8VgvIKQCjYIGjAnQhAFnrfCZS\u002fEECDkbcHe04HQBgrIyxdd\u002fs\u002fCI0RLEoeD0CxhmeKWFwBQFxxZvNTwfU\u002fJp4S89q8AEDpt+LS6MAIQH1Rg1beHQNARYYsZqWPIkAI4GEgT8AQQAhe3mlmWgpApZ1K1c8fJEBlmM+70xUhQOhNTuleJhFAX\u002fVT6z+2JUBOUnP265UjQH+U+cK28xlA6q3+aasgFUAbCbsxDuciQGEn2bUu6htA3WSUVVgwGUBfC7DkAlQdQHvkf1nPyiJAFtK4cuk\u002fJEC7U8yKRoYiQHaj\u002f4GKxyNAigQbJ1CxI0D9MEHr6vQhQKorTQAvRi9AHts403XsKkBioVLmCYsfQIHT78qewgpASzlsZoF9EEDa7LyeOYAVQLjyoOUlnhtAD11GaPM1IEAwq6E+P9ciQAaXVbOrpCVAvDA0+xqlKEBx81PayEoiQNrKuTamOCFAH8tQa6BzIECGQvJ\u002fVNIhQE9IfNDg9zFAJPmgQGryFEBX0lsftIUWQOotHRH38hRAFDBUe+y8HEBmCSBW94geQEc6yFh+7RtAAAKcVyr\u002fJ0DqhOltSGkjQDwV8fNvwSFAPxGCIEvkI0BWG97BORwkQB2ctSxLQixAF4RilYY8J0CAEFWvuQIoQEoUFcqZOCdAg3MO\u002fkvQKUDDHbV3EYsnQBFlF+jjgStAJmchVTWCKUA0X1Zd\u002f6ooQM3QS7szSy1AodoCmaiXK0BMgFt7ZHkpQPVtHPAKkihAkbKjg92eLUCXxcDOOCQqQAWeSYv86SpASswTajTbMEAKIEi1VN8qQL7xgdvqHS5AtM3\u002fjAu5K0AyP+ueeqQqQOzAAdU81S9A1qAd96eyPUCFodAnF8UsQJRBtVgTty1AV1DQo28sL0C0xXyOrwsxQIqPAryQLzJABXrXT08TMkDeCOvMZdUwQGr1lZ6oODFAKqdCTHDRMEBP+bloaZoxQA0\u002fPVnf0zJADXzUweHYM0CU8s8i53E0QHZwuqyn9TZAyw+Du+8pOEBSfo6RzHklQKBgmK5FFg9ArneTRs4BF0CpY90gTCgmQA+iAkW\u002fsiVAr5rAEh5fJECAwv+2njQYQJYqppO44QhA6bfi0ujACEB36LJenSciQEI8TMRGsyFAc\u002ftUtJRnH0DBKCmv\u002fqMkQAWeSYv86SpAHOgl2\u002fxkKUBXkP\u002fpuNMmQAx49smtiBVAfVGDVt4dA0CgqFzscexBQKUym0\u002ffGzRAY6S87cB8NUAnB3naSqk0QFQOqfI9RgtAIf1hBPJNGkBphqgqrf8cQMKrPJ+4AiBA6B1c6xQmIkD1wgatnuEiQLP7AMYRvSRAU\u002frMoSY\u002fHUDI3JjPPSohQK9F8Hv5ASJA4KVfA2D6IEDkcLv0WIsiQGld7kXfmiFAQ+t0MJTqJUBhj7W3gaYjQL5d66dPXyJA4hkk06jRJUCmoTpDrT0jQNBB1iunFyJAu6RcGrWkI0A3fG4ljC0kQGDJU4L2EChAR1XAl\u002fowJEAgBce5exYlQNeSqi+HyCNAaaHaipKzKkAndStlJKMmQJRgpwHQiydAPTiAccslJkDhNXaf1J4nQFAnl4ZjxSdAnvXo8QbcQkDpbiPjKW0vQBK6ZdffGDBAlrYdz0ZqL0AH6x2lhBAyQLOxeoFL6i9AoH7OHxHoMUDo0ieB5e4wQM8fClNyhzBAfkTcAoLuMEDxi\u002fa6H3owQBgvHCUrQzFAER7bVfv8MkDBvCm7caAzQKIktn+z0UdAKBzj8Qa3KUDBwJLye74oQBIKnvZVoyVAzL3pxY8zJ0A8sgzMkr8oQBnvB406CyZAVpfuaBsJKkBCPoBXGAQoQJsyzXZHJydAvHCsjw7SK0D0U9eVghsqQGCfiZpa9idA8KA19SINJ0ACEheTxiAsQIC4cShNnyhAHOgl2\u002fxkKUB9uSxhNuYnQLu6Vz+1nCpASfHIj4t6K0AkvcuNk1MqQN1RKlfuCi5Af8tk\u002fxoDKkAC3+OAXQokQIjgaAM9RSVA4gE0pvxeKEDW00wuZGgiQLtTzIpGhiJAZSsKk60lCkDwOERvn\u002fYGQONKGfB2XRFAUg5q3yAsAUA2o6+pu8YEQMZCRtMQ8f8\u002fwcCS8nu+KEDS\u002fCFbDOoJQJ9R1s7Bjw1AKBzj8Qa3KUCud5NGzgEXQBhJ\u002fpzEJxhA1VKfn3QBJkAoq5dZSqQjQEV8XyLHZBZAUvlhNh8IJEAWiFdRgg4mQDafEk9QXiJAsBTfhLUNIUBGCWF0xKImQItbp6YNmClAIkhGMWRjG0CEbummyOETQEvWuc7UnhVAisnMi1tkE0CTfuu8rIQWQGimOIsreyhAv7J3x6xgGUA5U+a9XjEbQFvtu4tHdhhAc\u002ftUtJRnH0AiFi+2eegfQAy8mchb2CBAm1MS15GQIEAfS2mt9mwkQHG6AJdmDiZAYKCjm3fRI0Amal38KOQeQCSs+6kgXSBA9r+\u002fASq8HUCqbPnW+cEiQBcBzrF1miRA50tJe5mZIUBmirNoixMlQGytvJyplCNAPHSC40iBJkAvuW+HA2wiQKA9962a3RhALGQF80atIUDCYgZrFYQYQMEFZzmhzCFAdNDxjqUTGkCviIokHXQ0QMes5+PCCTFAzdBLuzNLLUC8cKyPDtIrQCuUfRG6sClA\u002fz1oPsU9JkCNe4sqY3A1QJ1rgWxAujdAKJQMnjr3MUAx\u002fsBI2votQKHaApmolytA9FPXlYIbKkCWAc\u002fQI8QpQE7QUuU96ydAYd\u002fHYAICKEDiGSTTqNElQPaT1AUwaCRAah81t2B+GEAIjREsSh4PQIS8a6LFBEVABEZc96b1R0DlieeBHVpCQKaVwiCU2UJALI\u002f3IppsQkAm\u002f2TXUfQ6QHAC2w0QxT1AlmjURZu2PECe\u002f1B0AYI0QCFvSbEs1DRAbHc8WTZPNUBwvvceniQ0QOqMSSq+mDRACiGRkuTzNUBgTwh52rszQNrsD8OVcjRAt6u9n20xNUAponc5Qv01QNIGZzuh7TJAG3mHCwcUNEDE98XMWO80QF7jM9jzSzJAizLwxpghM0D3wtCcCTE0QMbACeHodzFABQzQvIIQMkB0U\u002ffdAIk1QGr1lZ6oODFAErpl198YMEB+RNwCgu4wQKB6EXsLpi5AbbxZuvANMEAzeWud8\u002fwtQEmLqpDcLDdA5LsDsmaiKkDl4rmM0PsrQIGfgIzXky1Ak2gkzBlAKkB77PuW5nUrQIAQVa+5AihATIBbe2R5KUC0zf+MC7krQGCfiZpa9idASfHIj4t6K0BNI9jc\u002fG0nQGcwe7s63ShAU0VB1biWJUBVJyA15acjQHhUCcSReSVAr0Xwe\u002fkBIkCmoTpDrT0jQCAFx7l7FiVAtN5RJG3cIUDgcGrxMMQhQGYJIFb3iB5AS9a5ztSeFUA5U+a9XjEbQCSs+6kgXSBATWsmTA6FIkDKi25E5Q8TQGV7gJ2S9g1ANqOvqbvGBECfUdbOwY8NQO\u002fghZe9Dv0\u002fVghEDapcBECxhmeKWFwBQDmXNuZURDhA3ncMrEjKREB8\u002f41bxWZEQPoAocfdcj9AYhCGgpPWPkCAYJdDW803QBZZNw0pKzdANF6kwWeEQEDVKfYv3SpIQLmblmyh4kFAOoflXn5BP0DeKgP0+YwhQLPjupenakFA5WeoKHROQEB6fw4GXag5QATigSYi3UBAWmH\u002f0ZInRUCBwAsL2zpHQK0bdwryCkJASZRbUoYbQkAYUMmQvTY7QBz\u002fx4PQLD1AjwytvT2CNECDgW2+Q9QzQAfTGMq2PTRALa+ERkF+NUD2QDSqxig2QHIb9XmkZTNAq+QVP128NEBpMNsHGYE1QIA7\u002f81hoTNAthaVxeN0NEAy8qodx7MyQNSH11KAuDNAxa\u002feISunMUAqp0JMcNEwQJa2Hc9Gai9A8Yv2uh96MEAaIJUvZeMtQMPsYLR4PS9AjPftXr8kLUCaxvkVmuspQPwSIZKkIytAMh8L48KkLEANEVGAYak2QB26pWTnbClAPmtiA6iLKkBKFBXKmTgnQPVtHPAKkihAMj\u002frnnqkKkASCp72VaMlQPCgNfUiDSdAJL3LjZNTKkDpSau9agUlQD78t47DZyZAweleVVKxJ0AEopjlipQkQIIPvVoNdiZA6oCrEDBXIUBSUXaooaIiQKw\u002fyGP\u002fViRAaYaoKq3\u002fHEBT+syhJj8dQOClXwNg+iBA0EHWK6cXIkDXkqovh8gjQD04gHHLJSZAVQoGElZyGkAYKFgctr4gQEvW9ocVhCJAKrDfKcyqJECSlu4DJtwWQNRgeP\u002fecyBA6i0dEffyFEBHOshYfu0bQIrJzItbZBNA9r+\u002fASq8HUCviIokHXQ0QL9zGrOJ3hBAM+1nizytCUBG4ixAcOglQMZCRtMQ8f8\u002fRXxfIsdkFkBS+WE2HwgkQBaIV1GCDiZAi+pYHtQY9D\u002fTuMNLnlL9P5\u002fi4CITGQ1AvePYWUErE0Cxf9fqqdEXQPhFjllxIh1At8elDcDYIUCQZqDkcrwkQFxxZvNTwfU\u002fSzlsZoF9EEDa7LyeOYAVQLjyoOUlnhtAD11GaPM1IEAwq6E+P9ciQAaXVbOrpCVAvDA0+xqlKEBPSHzQ4PcxQBoxLsJaeApA\u002f6M9Ay8lEkBaoQNIXZUXQNYv35tY9hxAuf3WC8XUJEB2GbAtQ2cxQAWWqRoo2gZA0ndAqo11DkDnaqLfrAsxQBqRm93z6jFAVA6p8j1GC0Db+LgxvyQ8QN7biZF9ST5AcdaqAueRN0A9nGWTY3k0QMHZW2JLi0BAexw6CPedL0AHdoJ\u002fN9QyQH7yQZBOgTJA2PclTM4+QUBqvpf9YhIOQEwljt+ABhJAGjEuwlp4CkD\u002foz0DLyUSQFqhA0hdlRdA2H7RgMeVLEDG+fEbJSUwQKRMD+7N4i1AoHoRewumLkAaIJUvZeMtQFkCji23dC9A1i\u002ffm1j2HECIahldjVAvQG28WbrwDTBAD2NoXgoPMUBI0i0N2GcwQCKNCYeIsjBAJMku0\u002f\u002fZRUC5\u002fdYLxdQkQHYZsC1DZzFAvuCK3hKBKkBqbtVIBZwoQJLbqo3hLyZA4L2rQRP7IEC8cKoO18YiQH+U+cK28xlAYqx4y5N2FUDqrf5pqyAVQLFhsyEW0x5A1L\u002fTZYXFE0AW2f6hyJMUQLinrGN4mBZACPG2P5XoFEDGnrz5jnoWQFUKBhJWchpAXSGEN8eMHUDioAxOpjIgQHEETPF1fyRAUFkaw6k9IkAEiryfoP8gQP89aD7FPSZA9pPUBTBoJEC03lEkbdwhQBgoWBy2viBAYrDazqlNJkC1rtaMRk0iQKPcak0j5CJAG6MalE4KJEAgvGoGEDkpQKBRiuq1DyZAKrDfKcyqJEB856aNsiQmQHviJQkZUCZACNQ8hiZvLEAJoRGRwtAmQNCM5zoAFShA\u002fLr+6KghJUBEW3AQ3vElQOlJq71qBSVASxCyXoyXJkBPrXQvEqAlQKsAebn4wilApaBRbsGiJ0CtWHE3VpcmQJYBz9AjxClATSPY3PxtJ0A+\u002fLeOw2cmQF5dhI17+CdA8f3hUi\u002f+J0BnMHu7Ot0oQMHpXlVSsSdAnNL\u002fHv6IL0C88a91gdI1QBZZNw0pKzdAOTvbxUbGNkAeOF9v+Ss3QEbjLiwPyDVA2AHV6PV+OkAs4v19Feg6QBzrOAx36DtADdy0u3QoO0BDHZIfMcE8QKmR6HLdCz9A2c75K0VtPUAJj2dLKEk9QBhQyZC9NjtAQoL6mVhMO0BkzIuX8rU7QOJtWatPsTlA9CKbTe1xOkCw5JVSbhg7QD+RzJU1ijpAJv9k11H0OkDB3fNcNXM6QFIFt\u002fEGFEBABBmPADeKQEDzvOj9k1U9QHAC2w0QxT1AHP\u002fHg9AsPUBocoIxEfE9QCEx8pp2aTdAC51w4G9xN0AE4oEmIt1AQBDTo5o0FUBA5WeoKHROQECdwnaL2bU3QH+qhMI9CDhAYQ+t3\u002fHqNECfjMhlQ89HQBZkhk32pjZAHJaEUdUFN0Chcf\u002fIRTI6QLsLNCcMuDxAIwQ9ENH6PUC1HJjUs0Y8QJZo1EWbtjxAXNP3omMcPEAf1oNCKXopQF9pm8FcIC1AZ58stTg6LEBLZQxfrTs\u002fQKnrtqp76D1AK5EDlP02QUBqt66cCUFCQAvrTxgO0UFAmh7ARTaaP0ByNCW01jdFQGEcLAUy1C9AbzqPgD4zLUAeBWzQG\u002fgvQDN5a53z\u002fC1AjPftXr8kLUC2BIxG57YuQPPgUp8aCDFAX2LFLbW0LUD7m1JQPTFGQI0kYbteaUZA7Jbcnnl9M0DDzkg6crxHQARGXPem9UdAztjT5nihR0A6xqPTSIAzQEknTO+0tzZA6NZqwLckNEAG6XkUslw0QIda0og9lTZATb7L2pgBOkALtpXV0EYuQOmnFO\u002fl8UFAUQRmGKN5KUBWvYBojxwnQEWGLGaljyJAtt3J5oMgPECfs8dLmr47QAQT8jVa\u002fS1AvTBXRj81NEAI8TmtdiJBQIpRwr0czhhA7TQvdn4VNEBkzhgSfPo9QCY1p9nOBjNAAAKcVyr\u002fJ0CBnsprJRcsQExYEB9DBDpArVM7ru+2NUB70wGIlcJCQDZ+6uc1YxxACOBhIE\u002fAEEDwr8wBV+shQJrCOSeh2SdAUb4plWW6JkCJSkRvrsAkQENMz4tYJhlA13hzSWtkC0AIXt5pZloKQCIWL7Z56B9AlOgYEgFbC0CFpmBoSYE4QBtSA83yTjhAwztc4U4pNECe\u002f1B0AYI0QE+qlkKivzNAHWn6h052NUCEkj8uznc0QCFvSbEs1DRAjwytvT2CNECt8HcOqkk1QNwDP3Eo0DhAYnp0P4slNkDlCTSpOA82QErr9PCj7jRAbHc8WTZPNUDtcVSEkd42QFoTrcA4FzlAen8OBl2oOUCBg12A6jNCQCyP9yKabEJASZRbUoYbQkAJEHKjaxZDQFo\u002f+8\u002fpPkhAGH2IBxhzSEC8JozSPFMnQAq37rWbsDlAUbgX4eeiOkAEkDF7SBI6QByS+9+3PBBAlAaeoYIzCUDayrk2pjghQDafEk9QXiJAyV53XM6iCkBlKwqTrSUKQIVQdHuEAxBAqECaszrrGEAe8XmjDyAUQKjOEv1uUxFAbIh6HaNHHEBqHzW3YH4YQMqLbkTlDxNAv3Mas4neEEBG2e+X\u002fa0lQF1GTm1+ABRA0VW6LTsRJ0CAwv+2njQYQFEEZhijeSlAVr2AaI8cJ0A2furnNWMcQENMz4tYJhlAI4lWEC4kK0Az8YjRu98oQCryma6DKCZAZK3DkZEbHUC+4IreEoEqQGpu1UgFnChAktuqjeEvJkC8cKoO18YiQLFhsyEW0x5AhQYNlesOKkAhTFulmUMoQMrjxyM4viNApp9YQ9CMIkBpCSfXa1UhQItbp6YNmClAaKY4iyt7KEBxugCXZg4mQBcBzrF1miRAdM5aYh6VKEB\u002fy2T\u002fGgMqQOIBNKb8XihAKgU81XigKUDqUVJXbK0VQGkm\u002f36R0R9AES55uTzUIEC\u002f+UoRmkNCQBYOX+z1xitAdWbchh1pKED2K+6mLNAlQDyyDMySvyhAqmz51vnBIkBSLTATCDo9QH8PPPopwzxAnRiSKozkLUCFUHR7hAMQQJycoHcsDRhAFtn+ociTFEAI8bY\u002flegUQJ2bHfceKQ1AQYpEVgzU9T+lyK+AgjcLQO\u002fghZe9Dv0\u002fi+pYHtQY9D8cyV4yCVIAQJYqppO44QhA13hzSWtkC0C9SP6h7FgjQKLXO8xKhRFAYqx4y5N2FUDUv9NlhcUTQCvvyEJUWRlABmCCYo1ZF0DCYgZrFYQYQEt+Eut6nCJAAt\u002fjgF0KJEDW00wuZGgiQHSbJPTBqSNAkMMfWsCNLUC9dLRzkrkbQEKSBjCR6w9AoGCYrkUWD0CMlsyF94soQOzottVgFidAS\u002fImvYOMJ0CveewPFrYRQEezMYhQrwBAVghEDapcBEDTuMNLnlL9PxBLy1FOyQRAhjrOxQrvGECI4GgDPUUlQGooYUSyuyFA7QMRc4iSFkCf4uAiExkNQL3j2FlBKxNAsX\u002fX6qnRF0D4RY5ZcSIdQLfHpQ3A2CFA\u002fb9xp0\u002fENEClDXZlvMgzQHC+9x6eJDRAg4FtvkPUM0CcK\u002fORe5s0QPBne\u002fUZ+TVAkGag5HK8JEDyW0BLLoozQAWG9HRwUDVAXcqr\u002fm12NEAfwNdrazk0QI17iypjcDVA6oxJKr6YNEAH0xjKtj00QDyh+XcHBjVAbiiEjpXnNkB6TgF0tow1QAohkZLk8zVALa+ERkF+NUD6MW3GhNM4QML75owNrTdAJzn5aFY9NkCda4FsQLo3QPZANKrGKDZAMpZzIokaOkDCxiYhugk5QGH92U3KIUJArRt3CvIKQkDbp5B+Qv9CQEhs4stwZENAwVC0UuSgQkCmlcIglNlCQOGJCOv3b0hAom8eQzdKSEBxe1GwxvVIQAssZ08LfihAxChCaAP8KUCcMSoRRxwsQApepvda4CxAJWzpEG\u002fiKUDkuwOyZqIqQJrG+RWa6ylAnTCTKzr+KUDfDI0vRdktQNy+\u002fDjxMStAMf7ASNr6LUDl4rmM0PsrQPwSIZKkIytAMSjUnsi1LEDu91AHG8MrQBh4I4EwoC9AdVaferXDLECBn4CM15MtQDIfC+PCpCxAPDRXkQxPI0DZdH+DZSE2QHVm3IYdaShA7itahA3HI0C0PZWX9eonQD6W8IyzySVAs50ggdrAJEArlH0RurApQE7QUuU96ydAU0VB1biWJUAEopjlipQkQDP+AH2vJSZABkYNHXXUK0AzjdpVJ7spQN1x2WGW9TZATDz5DhJrN0ANEVGAYak2QHdX2yClvSZAJc4W9WubJ0CCD71aDXYmQDQkPm4sMS1AKRLRi8MGK0CEnmvggq8tQLluX4xa2jJAOYRrputpNEA3K7ehB14zQGBPCHnauzNAchv1eaRlM0DzvZXsgC00QBAjcr\u002f6EDRA2uwPw5VyNEBXIRkmYco0QLervZ9tMTVAq+QVP128NEBxUd9LMAA3QCNLSThQlDVAKaJ3OUL9NUBpMNsHGYE1QAYhMPIEHjpAidNMM7C7NUAaTQJscJw2QCMWp+MwXUJAaVqRAZaeQkBngZFrAEREQFOSa6jLYkNA0O8b9WgSOUDJqD3ur8M7QJKW7gMm3BZAZI0g9kQ7HkB35+FfklgZQCFtHIcPoxxApuGBKcBdHkBtLBTN+21IQPYr7qYs0CVAlr7FzG3RJEClz3qUD94gQOBwavEwxCFA1GB4\u002f95zIECQCvE56vYhQEbZ75f9rSVACgjq44kaIkAZyd74boQhQO\u002foovDAqi1A1OC5QLjuOECRsqOD3Z4tQAISF5PGICxAEEfl5cXjKUDXIaQ5BWsgQGhygjER8T1ALXAcEi3gPECt8HcOqkk1QJwr85F7mzRA872V7IAtNEA2rFuGpD01QFaQv4zifDNANHHI5DVwMkBP+bloaZoxQBgvHCUrQzFAtgSMRue2LkByITN453srQKHq2+Dm\u002fipASxCyXoyXJkBeXYSNe\u002fgnQA9fSCypMyRAeigmQlTkJUDkcLv0WIsiQLukXBq1pCNAta7WjEZNIkCQCvE56vYhQF1GTm1+ABRA12Lsgvz0D0AcyV4yCVIAQBBLy1FOyQRAJp4S89q8AECPS7dUxB0sQGhkRXSLpxdAO4z+6yFfM0BzcYVPKnhGQNVcWkFBMztAftqPkOXwMED5m\u002fVxo2U1QJHj2xNOijZAD5HKvi98QkAtNNM+qvU6QOBmuOrQ\u002fUJABZapGijaBkDSd0CqjXUOQCoFPNV4oClAdJsk9MGpI0DnaqLfrAsxQBqRm93z6jFAdsSts96bO0B0zlpiHpUoQHvkf1nPyiJAYMO5QCMfMkCrtRLsto8yQNIGZzuh7TJAg4hjiI49IEDCp\u002fDem60zQBt5hwsHFDRAgDv\u002fzWGhM0AsK+WCcmo0QDx890m+7zVAtGH1sNGGNEA04SEnJP41QMT3xcxY7zRAthaVxeN0NEAy4o4EHv42QB+s714OJUZArUNTJOqhRUA="},"xbins":{"end":50.0,"size":1.0,"start":0.0},"y":{"dtype":"f8","bdata":"aIhRrJ3R\u002fT\u002f3992RFabgP7L5RjNnuQdAFTuxEzux4z8MvdALvdD7P0yt1Eqt1PI\u002ftVIrtVIr9T+6kRu5kRvhPyX4gR\u002f4ge8\u002fzczMzMzMH0Ae+IEf+IHfPzZyIzdyIwtAEfzAD\u002fzA8z\u002fA0Au90AvtP2iEGKKUCec\u002f3EgzfMq7+j8seL+n+3grQPiJd3ajhiNAa+Od4h3gHECGuu3GZYQFQDZAyX66TwFA8\u002f6L\u002flx2+D9iM9\u002fRaVf+P7tot+2CwOY\u002faohRrJ3R7T9B8x+FtzruPx0TjdaCiu4\u002ft1J6+2H+5z90Yfip7gnwP5+2u4\u002frwg1Ag79aX2Gt\u002fz926Eei5PL4P8MtprCSF\u002fA\u002fJLHxVVMy\u002fz8l7UVRmCH1P+uB3SMgRvs\u002fyEOhwekk7T8YewtGgmLkP0HzH4W3Ov4\u002fQfMfhbc67j9qwpTl74fYP3f6ZMhur+s\u002fZmZmZmZm8j8YeqEXeqHnP2IndmIndgRALLVSK7VS4z\u002fw2tpqN0rpP1hqpVZqpdY\u002f9akqCoPWIUC80Au90AvtPzyxEzuxEylAR27kRm5kI0CWWqmVWqkYQGZuKOneBxNAHxO\u002ftqbjLEBWA\u002f\u002fTsdDuP1qajZwkGglAVPn1ksPLJECIxqAcuu\u002f7P3wbFVXJySFA1Kddl\u002fBZCkC8iRGHCDX7P9IZWUdf8fo\u002fx\u002fWM59PG7D816tDl0ivfPx0C33vfBuo\u002fRhnTcQa65D9PncHUxTj5P2qIUayd0e0\u002fyo3cyI3c+D8odmIndmLXP2ulVmqlVhVAF3qhF3qhFEB+4Ad+4AcCQN\u002fIjdzIjew\u002faGZmZmZm5j9ODv9KP1z6P5F7N98nHfA\u002fWbivv7jW5j\u002f40c+ilYTjPyPfkZt\u002fvxNAJjdyIzdy\u002fz8HSQFPpxzaP5epl8RBAQNAuMRrDig69T+Q3MiN3MjtP6VWaqVWavk\u002fbKVWaqVW6j\u002fVSq3USq34P0ut1Eqt1AZAHRON1oKK7j+O3MiN3MjdP2qIUayd0e0\u002faIhRrJ3R\u002fT8tv\u002fkCM3j2P6++F\u002f4tRO4\u002f\u002fFFSxZOw6j9syGcJ7I8JQJ87LwsqsyJA8PHLSaFpIkCXAVcmroIaQIAqpyuBgwRAaohRrJ3R7T\u002fKV+z\u002fOr34P4VY0m3WbPc\u002fIxZBWccU6T9wMDjAVpbfPwzFO4zV7QNAFA4Yk\u002fLRBkDcL2ytz63yP28Xfhz7ifo\u002f9WG8a0LO9T9iOkiqfnMLQHyS7nyEBeI\u002f7wCE0oXEAEAKA4jsK\u002fkBQNNWlNL9SvI\u002f\u002fFWvu\u002f1K+T\u002fyuU0r8JrjP6j22SQfMRBA+ID7rXBI\u002fj+yQLGbgg8YQP8RcPeLYPk\u002fHLQZi6QRAkAFWPx8ajQNQHqwkevqRPw\u002fZJ64iutwL0BtL464QZkwQO9Nr9mJzSBAiGSQOdgoI0BJ7FmklawiQLZ0ORVbgAtAVvYPTmzy7z9RgjCYbAAgQFsgBjkRYwBAteQrRJT3G0AnM\u002fR+oB0CQFIrtVIrtQBASq3USq1UJEB1Yid2Yif6P8IP\u002fMAP\u002fOA\u002fiF7ohV7oD0DBD\u002fzAD\u002fz0Pyl2Yid2YhtAHRON1oKK7j8dE43WgoruPx0TjdaCiu4\u002fHRON1oKK7j8dE43WgoruPx0TjdaCiu4\u002fLbVSK7VS6z8dE43WgoruPx0TjdaCiu4\u002fHRON1oKK7j8dE43WgoruPx0TjdaCiu4\u002fHRON1oKK7j9JB\u002f+pml7zP3YDjmWKRfA\u002f9ubUKkGJ5T+juR1ayiDqPww7d6B5q+I\u002fToH6V\u002fv8DEC+6fVssaQMQBVKwxrZaf8\u002f3N0K8OprCkChF3qhF3rxP9ELvdALvQJADL3QC73Q+z+amZmZmZkDQH\u002fgB37gB94\u002fLvRCL\u002fRC7z8dE43WgoruPx0TjdaCiu4\u002fHRON1oKK7j8dE43WgoruP0jL2yKBLvw\u002f9WkGqxZb+T9NVnLOhx8EQJEMxreZcvI\u002fqc7dhSXl\u002fD\u002fAtlRJ48ceQH3CMv4cLfY\u002fLpmYMz9WG0ARfGrxb8QkQJxlJ5+Gw+g\u002fmvNNp6aFIUAYgg9L9y\u002f1PziD0aIk\u002fwdARqB949Rh5j\u002f23m3CamsDQFhECCyR5QpADgS1BQHKI0BgZ69mgXr2PwRkN0jyUR5Apna4sMQM6T++SZCC+hooQG20thRzNvs\u002fmFMhSzWv4z+9gT42C8nxP8Jf3fMQKSdA7NQ89165LkDGr0HeS00CQMd33TkVVkdAQHKbXlOi8j+wYKQCjzv2PxFdu1LoPTdAfiV0Wd4X\u002fz+c4yFzT3glQO3ETuzEzjFAjI9MrVwPA0BmZmZmZuYvQGhmZmZmZuY\u002f10qt1Eqt7D\u002fxAz\u002fwAz8IQDhyIzdyI\u002fs\u002foxd6oRd6C0CLndiJndj1P8EP\u002fMAP\u002fApAoRd6oRd68T\u002f+wA\u002f8wM9LQF\u002fohV7ohRdADL3QC73QAUDmRm7kRm70Py\u002f0Qi\u002f0QhRAgeAHfuAHCkAttVIrtdIlQNheDotCEu0\u002f2F4Oi0IS7T\u002fYXg6LQhLtP9heDotCEu0\u002f2F4Oi0IS\u002fT\u002fYXg6LQhL9P9heDotCEu0\u002f2F4Oi0IS7T\u002fYXg6LQhLtP9heDotCEv0\u002f2F4Oi0IS7T\u002fYXg6LQhLtP9heDotCEu0\u002f2F4Oi0IS7T\u002fYXg6LQhLtP9heDotCEu0\u002f2F4Oi0IS7T9KjidKZvnfP7VSK7VSK\u002fE\u002fVmqlVmql7j9nZmZmZmYAQPiBH\u002fiBH\u002fQ\u002f9EIv9EIv8D\u002fiB37gB37gPzQzMzMzM+M\u002ff+AHfuAHG0DmRm7kRm7kPy21Uiu1UiJALLVSK7VS6z\u002fZiZ3YiZ0jQCI3ciM3cglA1Uqt1EqtCkCplVqplVoBQM3MzMzMzNw\u002fm5mZmZmZ8T\u002fuxE7sxE7kP2dmZmZmZgJAwFwWPyYQCEBP7MRO7MTePxy5kRu5kQVAlCS2qiKp5T\u002f5gR\u002f4gR\u002fgPxy5kRu5kds\u002fplZqpVZqA0DuxE7sxE7sP3\u002fgB37gB\u002fI\u002fBD\u002fwAz\u002fw6z9w5EZu5EbuPyM3ciM3cvM\u002fRhfGAD62FkDMzMzMzMz4PwQ\u002f8AM\u002f8Ps\u002fXKmVWqmV6j\u002fqhV7ohV7oP2qIUayd0e0\u002faohRrJ3R7T9MrdRKrdTqP1dqpVZqpeY\u002f2Ymd2ImdHEAstVIrtVIfQE\u002fsxE7sxAZAa6VWaqVW\u002fj9jJ3ZiJ3YGQNCbwUPfcgZAiNtC3pf46D+6kRu5kRvpPyY3ciM3cvc\u002fT+zETuzE5j+LndiJndjpP3AcsbWQF+o\u002fKXZiJ3ZiAUDIjdzIjdz8P+7ETuzETtw\u002f7LroPzSJ4T8odmIndmL3P8IP\u002fMAP\u002fPA\u002fzczMzMzM3D\u002faj14KdT4VQOzETuzEThRAvdALvdAL5T+6kRu5kRvpP0cSGz5TWe0\u002f9w5PNOHg6T+jsi9v0bzoP\u002f7s6ltc9QZATWZS+4M1\u002fz+rPbf9babzP8cYND9CN+4\u002fWfqGqw7YC0D4y\u002fu4JcMmQD6vnHlXIwVA1XSy8ylMSECkO15Qqez4P3Cn8rg7+AdA25X8qC+NQUBKHLrUR78yQJg\u002fJnsfDfc\u002fqFNwXXt0IkAyy7\u002fGRk3rPzkOiXrA59o\u002f4JO5jd01DUCDgLZxmovpPyRQmsohNQVAj0QgGaUiBEBoiFGsndH9P2qIUayd0e0\u002fo1mmEALf4z+N9YCpcaDnP0vHPwjJA+4\u002fS8c\u002fCMkD7j+LLJODGXohQAIPosN\u002fBABAI6N57V3uIEA9TkoAj0EdQM6fmmGfFBJAhAE9JP2\u002fDEAlFX64RlPsP2qIUayd0e0\u002fQFWjo1Oq4j+el9wvbP3uP2qIUayd0e0\u002fRxIbPlNZ7T8cQQOKTJziP3\u002fgB37gBwRAO7ETO7ETFEBVzukg4ucWQJFQYRdI8QRA6XsQtUsd9D8mdmIndmIJQD\u002fwAz\u002fwA+8\u002ffuAHfuAHAkBEL\u002fRCL\u002fTqPyU3ciM3cus\u002f\u002fcAP\u002fMAP7D8dE43WgoruP+\u002fSQjV0bfU\u002f5fJYu\u002f3V+j8g8zLZDPHjP8ZO7MRO7OQ\u002f1kqt1Eqt5D8dE43WgoruPx0TjdaCiu4\u002fHRON1oKK7j8dE43WgoruPx0TjdaCiu4\u002f2omd2ImdHEABAAAAAAD0P1dqpVZqpRhAhl7ohV7oEECf2Imd2InxP5\u002fYiZ3Yifk\u002fvl0EsdAjDkB\u002f4Ad+4AfeP7VSK7VSKxFAjtzIjdzIB0CCH\u002fiBH\u002fgBQGZmZmZmZu4\u002fpVZqpVZq9T\u002fURMrLXssgQIZe6IVe6Pk\u002f40Zu5EZuK0Cl0PypeEz5P7mRG7mRmyVAvtALvdCLIEBmZmZmZmYIQOzI7GKK6e4\u002fdKdNZxRF\u002fD8VphkAv44CQJD58gvPefk\u002fgh\u002f4gR\u002f4\u002fT8dPnmf6O74Pwqf9HxnnwBA5eKLzYO6+T8+8TqLQw35P\u002fOzfrTjZ\u002fs\u002f5IhqR\u002fjT6T9qiFGsndHtP1lQ5cYJPRBAw9BNgN0fCEAS3VmE3Wb+PzrsbMWKT+0\u002fkwdk7ECQ8z9TN2YaZQwUQKlPNs2\u002fm+I\u002fH5sPVWhPKUAuhuhE9acjQEFJEFuTDhRAEqgHAR9pB0AnCoCNGyXvP4BSbuHdyBhAQfMfhbc67j9qiFGsndHtP0H1sosCoxJAWLiUn4nP6z+zMvRAQxP7P7Eal2sfNPM\u002fqPqecxGE4j8dOCw6h4ANQEr2NnA3Ki5AOQrF3Nm1DEDc8NMrDFVJQAPQXJg6Xvg\u002fgOemJ87mDUCZ2Vy5OUJDQHvMZlGZLjlAgvcNMMDi9T\u002f717lrQw4oQI3VlgpV\u002fvI\u002fBxz5CO\u002fL9D9n3z5BiJj6P4XGoBucD+c\u002fCtps89dO8z8lFX64RlPsP9UgQ4qSvhxA10S2EXPBC0BR22V\u002fqmD0P08O\u002f0o\u002fXOo\u002f933qZ2I\u002f\u002fj8\u002f8AM\u002f8APfP7ITO7ETO\u002fU\u002fxU7sxE7sFEBkJ3ZiJ3bqPzMzMzMzM+M\u002fNzMzMzMz\u002fz81MzMzMzP7P9VKrdRKrew\u002fTiY9QTZdFkC9kRu5kRvxPxd6oRd6oe8\u002faIhRrJ3R\u002fT9+4Ad+4AcjQIud2Imd2Ok\u002faIhRrJ3R\u002fT\u002f6gR\u002f4gR\u002foPwM\u002f8AM\u002f8Pc\u002fUoLr7+oV4z+NOZyJy9T1PzZyIzdyIwNADL3QC73Q4z8lh7iBb4nyPykDasxA2+o\u002faqVWaqVW2j92Yid2YicIQAl+4Ad+4ANAWGqlVmql8j94Yid2Yif6P2pC9UB8RfE\u002fMfRCL\u002fRC8z8mN3IjN3LrP7mRG7mRG+k\u002foxd6oRd66T9EL\u002fRCL\u002fQCQBd6oRd6oec\u002fe6EXeqEX6j9oiFGsndH9Pz5DLc8Xq94\u002f4Qd+4Ad++D95oRd6oRcKQBH8wA\u002f8wP8\u002f\u002fcAP\u002fMAPCECjF3qhF3rpP3MxbrD7T+4\u002fUyu1Uiu18j9qiFGsndHtP9qJndiJneg\u002faohRrJ3R7T90IzdyIzfqP\u002fVCL\u002fRCL+Q\u002fJDdyIzdyDUBHbuRGbuQGQO8DP\u002fADP\u002fg\u002fDL3QC73Q4z8K0g2vDNzoP3VPzLgwTOA\u002fA5YsZe9PAUCqwMtys+T3P2jx+xONFf0\u002fpn2L8bcp4D8GfyCgh+P4P4Y0e3GH3\u002fU\u002fjDZ9XRMc8j\u002fw6eQpUyruPzqLikCwOg9Axe2ze7WuDkD+sCmVlTL6P\u002fy4uKux7gVAGY22CbmbB0D43dCjtWDzP3b0mdPgjPc\u002fXamVWqmVAkC7kRu5kRvpPx0TjdaCiu4\u002fJt0ql9ED7T\u002fHrl4pu3PpP0iYwNitceY\u002f+m5EIGUf8j+F1Pom5k\u002fxP5SN4xoyfuM\u002f8lNBfmpp6T+wCrKYIYfxP+J\u002f17WFTfw\u002f+uTCBajKFkBr2DjlpQb1P2enrlkNfBZA8unpuedlHkAqaRcRg5f3PxF3q43xXx5AiQAq7Tpi6T\u002f8sEy\u002fV\u002fT6P0nIkDYNdvc\u002feP2RNXtx4j9GoSIJnRzyP4ptBxHKWwNAKx\u002fvc8Gr8T+ftY1j5d8AQCwOtYJiu\u002fE\u002fSgtYnNlS6D9URU00N5whQEuw2JW75OQ\u002fZQuGtmeQF0D+sMlTEWgEQNMUoDdRpiJA7kwHMcOVGkAzDjLXy7vxP3beTYj+NBFAyvJTfQ5l4T\u002fJWQ0zY6vvP5R6lf4lVyJABaP4Oe1+5z9+3fwO0pklQCrM2Oa9vPY\u002fz3E973Xo\u002fT9kgf+mh\u002fFAQF1sdwfGVgJA\u002f5N8C1uyQUCyNVdvlxrlPyIuGiH9BDBALytxIAfi6z+YTWgUoxY4QFIrtVIrtSZAlNec7AnzIEB1Yid2YicKQM3MzMzMTCtA6JQImTaYAEDxAz\u002fwA78lQGhmZmZmZvo\u002fip3YiZ3Y8T9u5EZu5EYGQLITO7ETO\u002fE\u002f9UIv9EIvAkA9sRM7sRPbP+mFXuiFHkVASq3USq3UFUBg6IVe6IX+P0lu5EZu5O4\u002fL\u002fRCL\u002fRCGkB9oRd6oRcGQJMbuZEbOSZAfRtHClTd7D99G0cKVN3sP30bRwpU3ew\u002ffRtHClTd7D99G0cKVN3sP30bRwpU3ew\u002ffRtHClTd7D99G0cKVN3sP30bRwpU3ew\u002ffRtHClTd7D99G0cKVN3sP30bRwpU3fw\u002ffRtHClTd7D99G0cKVN3sP30bRwpU3ew\u002ffRtHClTd7D99G0cKVN3sP30bRwpU3ew\u002ffRtHClTd7D98oRd6oRfqP30bRwpU3ew\u002ffRtHClTd7D99G0cKVN3sP30bRwpU3ew\u002ffRtHClTd7D99G0cKVN3sP30bRwpU3ew\u002ffRtHClTd7D99G0cKVN3sP30bRwpU3ew\u002f+EVND7iv5z+A+l0VVcLnP2OyjFD3juw\u002feQckiv905D\u002f33NgNNH7wP5lkj+PyfwpAVSzXAjAOEkCF0ml8anwZQFbaTsJowP8\u002f21ICdXHzAEBbRrPsuGMXQDwCeP015OA\u002fNgv2R\u002fq5CEDBtbtfiyz6P+UUVZly7wRAEzTiMF\u002fa8z9Vuz2EjDj5P8fljjc0qCBAb4LWzzXWEED8Yh\u002fdyEn8Pye6NhfWZRZAQtmKBcnDDkCuK6y7cHfjP9Ltrdib\u002fAhA8UrH\u002fpy6AUAONBf8\u002fOgXQNzYtmSzpfM\u002fLSayPTxD6T9vU2tP7jwgQIqEnfJ09gBA6xDlPcPL8T9twdA+\u002fmU2QDGIVFxRMARAlbSWQtWu9z9EdCxADnU3QA7jEaz\u002fT\u002fU\u002fkYz1QxBMBkBs8CeRyZkmQEzMaH\u002fKq+o\u002fiVxcUWVvM0Ala32y8FjyP4DgB37gB+Y\u002f94Ef+IEfHUCnlZ8jTZQLQMiN3MiN3BVAXuiFXuiF5j8w9EIv9EIFQF\u002fohV7ohSRArdRKrdRKCUCj0HQyj4L7P73QC73QCwNAvw\u002f8wA\u002f8GUDrhV7ohV7YP4IkDxnfrQtAEvzAD\u002fzA5z+GXuiFXuj9P0yt1Eqt1No\u002fiF7ohV7o5T\u002fYiZ3YiZ3wPx\u002f4gR\u002f4gQlASe07zzOL6T\u002fCD\u002fzADzw2QI7cyI3cyAVAOQRkxzSU7D+2Uiu1UivtP8VO7MRO7Pg\u002fKNalAgrX7j8Kdz7wmyjvP+RGbuRGbvg\u002fS63USq3U9j\u002f8wA\u002f8wA\u002f0P+VGbuRGbhFANDMzMzMzEUBYaqVWaqXyP97IjdzIjfQ\u002fOOPY4bALAkDDD\u002fzAD\u002fwKQAQ\u002f8AM\u002f8BlAplZqpVbqIECe2Imd2IkFQIEf+IEf+P0\u002fsRM7sRM7B0AL\u002fAqloZECQA6SId0WOvI\u002fkkfGyiC78j8CAAAAAAD8P+AHfuAHPjRAcORGbuRGDEAzMzMzMzMBQHuJAYefCQ9Ab1kf2DBiCUD8wA\u002f8wA\u002f4P5qZmZmZGSRAc4VckrvP4D\u002fURH6vZUjxPxQ7sRM7sRpAIEKzWbTv7D8gQrNZtO\u002fsPyBCs1m07+w\u002fIEKzWbTv7D8gQrNZtO\u002fsPyBCs1m07+w\u002fIEKzWbTv7D8gQrNZtO\u002fsPyBCs1m07+w\u002fIEKzWbTv\u002fD8gQrNZtO\u002fsPyBCs1m07+w\u002fIEKzWbTv7D8gQrNZtO\u002fsPyBCs1m07+w\u002fEPzAD\u002fzA5z97oRd6oRfqP2ulVmqlVvo\u002fXuiFXuhFM0B5oRd6oRcKQI5Ytko14PM\u002fFUf\u002fEwhH9D+B5LR4SD0jQDb8buIKYxtAi6cjFpVpEECPXt807psEQEQv9EIv9ABA35xv3Wj69j8jof+bzhrxPyUVfrhGU+w\u002fJRV+uEZT7D9qiFGsndHtP0HzH4W3Ov4\u002f1GfDBQKPDED3QwiueikEQEcSGz5TWe0\u002fUXmwbEApA0B2J1AvRcwFQFRp6tlQTgFAoxd6oRd66T9v5EZu5Eb2P9MLvdALveA\u002fAz\u002fwAz\u002fw8z8\u002f8AM\u002f8AMDQI7cyI3cyAFAip3YiZ3Y6T\u002f8wA\u002f8wA\u002f4P1DsxE7sxAJA1kqt1Eqt5D9LrdRKrdTyP83MzMzMzAZA1Uqt1Eqt7D+O3MiN3MjtP3Zt9fTkpBxAYSd2Yid28j9lZmZmZmYpQJrNkbGUbfQ\u002fwkDi+MEw+D+2Uiu1UqsjQIIf+IEf+BVAnxd2F\u002f+i4z+GXuiFXugNQKDYiZ3YieU\u002fmG+SzCIt7z9PDv9KP1zqP8jM7GIN4fY\u002ftpZx9yCPAkC2dNHs9e0FQOGisJ5Zv\u002fA\u002fN1xu6\u002f2o6T9qiFGsndHtP2qIUayd0e0\u002fe3lTvQ3R9T\u002fIY1X2dmcZQGbMoDexbBRAC8DMyrTZBkDaMMViNWTqP2A2yy69ZfY\u002fjRyEp4dzHUBHOgXea4P6P6XopzJOzDRA58NBN8y+9z8fpGUUy7ItQHWtNyA07iVAU5KAatm5EUDUidnDmQv3P9Amak2O3t4\u002fdAv3Cae99j9qiFGsndHtP\u002frTj+\u002f5VuI\u002fHRON1oKK7j8dE43WgoruPx0TjdaCiu4\u002f8Z6K45pG5T8IzlIOEAbtP2X13dELJNs\u002f+S1A8mTz4z9yXSSqilPpP3JdJKqKU+k\u002fbEXpi41tBEDoj0szohfkP2OegSo\u002ftuA\u002fdV\u002fMh4mP5j+M4JWpM\u002f7oP4zglakz\u002fug\u002fFmUQvkCt8j96O4ETQ9HmP3o7gRND0eY\u002fGd9HLKv48z+SxGYsXG3bP8eHEqQHrNg\u002faIhRrJ3R\u002fT98pcc87cUCQNzb6QY0svs\u002f8+r3yZEP8j+SVzz43r\u002f2P\u002foeDBjKO\u002fA\u002ffMEF9Vue5z98wQX1W57nP2qIUayd0e0\u002faIhRrJ3R\u002fT9qiFGsndHtPx0TjdaCiu4\u002fHRON1oKK7j9uvoG5S2DxP0HzH4W3Ou4\u002foznRwQEc6D+jOdHBARzoP9xaIhTkvuQ\u002faIhRrJ3R\u002fT9NK129itXwP3eLkkn0uwNA34xTTzVr5j9tRPEXvs\u002ffP\u002fKsD1GyXPI\u002fTwrfOp1G9j9PCt86nUbmP2qIUayd0e0\u002faohRrJ3R7T9qiFGsndHtP2iIUayd0Q1AaohRrJ3R7T9qiFGsndHtP0HzH4W3Ou4\u002fmSmYnmgxBECotEMCTTQZQFPS9\u002fi9aOI\u002fTrcBlX35E0Dj1vHlEywHQNdSJ7TN9fg\u002fhGEQ\u002f8Wj\u002fT+EYRD\u002fxaPtP0HzH4W3Ou4\u002fQfMfhbc67j9oiFGsndH9P10juW\u002fsIO4\u002fsYEaOG9h8j9B8x+FtzruP2qIUayd0e0\u002fPyJ9j2Qq6D9iJ3ZiJ3biPxzQkiMzWuw\u002fu2+eZTu36D9OJj1BNl0WQDc4Km86nvE\u002faohRrJ3R7T8tg1lnHfPjP7p\u002fFyTg3vY\u002fYid2Yid26j9PhkasO0nnP2qIUayd0e0\u002f0CPrp91F5T9qiFGsndHtP2qIUayd0e0\u002fohd6oRd66T9qiFGsndHtP2iIUayd0f0\u002faohRrJ3R7T9qiFGsndHtP04mPUE2XRZATiY9QTZdBkBqiFGsndHtP04mPUE2XRZAaohRrJ3R7T9HbuRGbuTyP7ITO7ETO+E\u002f\u002fcAP\u002fMAP7D8dE43WgoruP5Lcca0Dofc\u002fxvhrOFPi9T\u002f7wA\u002f8wA8OQA290Au90PM\u002f6oVe6IVeBEAttVIrtVLrP9VKrdRKrRlAHRON1oKK7j8dE43WgoruPy68A24YNgFAuYg99kDZAEA3y2V3NdHfPz8RYROKuPk\u002fH6ito1WJHEBcwTrbVLcUQHUZRvzFkgpAOMycazfk+j+Ye26LR\u002fziP0Cbg6tB3uw\u002fH+4+ljh+4T\u002fVLmiZ6cHyP5aHhIBYkOM\u002fabrZiXIj6j9qiFGsndHtP2iIUayd0f0\u002fBaXTQN6M+z+F3i1M9IbiP+LuTR2LkfM\u002fp3UB5Ktb6T9B8x+FtzruP0HzH4W3Ou4\u002fQfMfhbc67j8pywC62HTpP2qIUayd0e0\u002faohRrJ3R7T9qiFGsndHtP\u002fvAD\u002fzAD\u002fQ\u002f0gu90Au99D\u002fFTuzETuz4PwAAAAAAAABAUiu1Uiu18j9rpVZqpVYQQNiJndiJnQRA54Ve6IXeIUAu9EIv9EL\u002fP+MHfuAHfklAm5mZmZmZ4T+NndiJndgBQJEbuZEbGUNAtFIrtVKrNkC3\u002f00ckbj6P\u002fzAD\u002fzADx5ADMeEGqBY3j\u002fgB37gB34EQF0heSt9puk\u002ft+Jkqte6A0CRG7mRG7nxP17ohV7ohQpAr7BdJ\u002fK64T9FL\u002fdzNiAaQJvOw2ESnvk\u002fjtzIjdzIEkCcTPY7K4gEQGQUR226TRBAGMoo+Ay0A0AodmIndmLzP3diJ3ZiJwBAveSIzvtJ8D9+Nhe\u002f9SwHQPIDP\u002fADP\u002fw\u002fmpmZmZmZ8T9EL\u002fRCL\u002fQcQDgzpwbQP+0\u002f93GRDZZI6z\u002f2Vc2DrDbgP6xkPWewBO0\u002fhz1ZylhO+j9Oea0AvYwaQADsfKTLTQFArk9iCFJtBUBPDv9KP1zqP2MndmInduo\u002fAgAAAAAA+D+v1Eqt1ErtPzGGxGUNzOA\u002fw87vmUA05T934NNde1zxPzqI4ajyjvI\u002f7Pyn+YiM8z9cqZVaqZXqPx0TjdaCiu4\u002fHRON1oKK7j8dE43WgoruP1i4lJ+Jz+s\u002fvdALvdALBUDLzMzMzMzcP2qlVmqlVvY\u002fohd6oRd64T9mZmZmZmYSQCh2Yid2YhNA+8AP\u002fMAP3D+O3MiN3MgbQFMrtVIrtfo\u002fWWqlVmql\u002fj9P7MRO7MTuP83MzMzMzPQ\u002fcyM3ciM3AECLndiJndj5Pyh2Yid2Yvc\u002f2omd2Imd8D9MrdRKrdTiP0Vu5EZu5AxAmpmZmZmZB0CQ3MiN3MjdPxShCSZt5wlA4gd+4Ad+6D9P7MRO7MTyPx0TjdaCiu4\u002f\u002fcAP\u002fMAP7D9MrdRKrdTqP3yhF3qhF+o\u002fHRON1oKK7j8dE43WgoruPx0TjdaCiu4\u002f\u002fcAP\u002fMAP9D\u002fcyI3cyI0EQKIXeqEXegNALbVSK7VS8z++0Au90AvdP+EHfuAHfvA\u002fRdnhZc8e7D+bmZmZmZnpPwEAAAAAAOg\u002f\u002f\u002f\u002f\u002f\u002f\u002f\u002f\u002f8z9GbuRGbuQQQI7cyI3cyBBA0Qu90Au99D9P7MRO7MTyP8V4IJ07XvE\u002fNisJNRfuF0DDRRQH71oTQMUuOVESqQ9AcE0o9NbZ8z9+vbUVHKHsP6kywR+xywBAHMXHOOhY5z+QgIxtk\u002fQGQEpzVC2vaeg\u002fFd8U2jLbIkC22R8Rj9v0P2T3msKVWhtAjzfAs1chEkCXpPY8oXP+P2aXqUrAEPQ\u002fSICoWdGFA0BS55cCPqv1P4AMQw6+c\u002fk\u002fwqB85w5q6T\u002fRxZlRAPr5P3SXBZqOO+w\u002fkOruWmup6z9EUDm1mXv1P5kZGJeiSOs\u002faohRrJ3R7T9MnBLdaF3tPxLKsuMMTeA\u002fvajYS2xz6j+9qNhLbHPqP8W4M5r2FfE\u002fualWr1Jk5z9B8x+FtzruP0HzH4W3Ou4\u002fQfMfhbc67j\u002ff2ovUeacVQC0WQaOtGghAsCAT4XcF5z+XgHFKONntP1cAYqK2Hf4\u002fEd4A55QD9T\u002fi4W3z3SP4P3Kq1CA9xuQ\u002ft1Zw\u002f17mBUBeixL2VnwlQJisacdv6eY\u002fY0tDWVA+IEC5xvW\u002f8aUUQJPXXBht5Po\u002fV0S2KMUL7T+\u002fA8LTsUPoP9r7rYUJqPY\u002frHY2UrIh8D\u002fcDE5YiCzkPwQ\u002f8AM\u002f8OM\u002fQfMfhbc67j+Cp9BHfeTsP1lqpVZqpQBAedcn\u002fL0qIUAU4QIFZFIFQNQ\u002fE0PNGUBAxiYdnExc+j9vJqG51BQBQOOvaPUejDhA7ScqZv4BM0Aib\u002fhF+I8hQA52OlkAl+w\u002fDnY6WQCX7D\u002fLV0mR6p\u002fzPzkZwnXtd\u002fM\u002fjk4B+mkB4z82ejRdEkb1P8a9iOQ3EOM\u002ffNT5dAud9D8lFX64RlPsP2qIUayd0e0\u002faohRrJ3R7T8dE43WgoruP0Pf28aijf4\u002f4DkMpTgtIUCzTyj3rCkdQB0546TaahhAMqoTtlKXAEBML2n\u002f9pTtP7lpqWFpgOE\u002fv0l0CJ7i\u002fD+nzQRCi0f1Py586Z9rxt0\u002ffv+6NNuz8z8nB7Xaqz4JQBO\u002fdca31\u002f0\u002fu\u002fNLyGQ6BUAtwkCM8LDrPy3CQIzwsOs\u002fLcJAjPCw6z\u002fU2tVtK8PrP6z+sVsLyOo\u002fG6rPPw4p6D9B8x+FtzruP2qIUayd0e0\u002fTiY9QTZdBkD0Qi\u002f0Qi\u002fsP0Mv9EIv9Oo\u002fqZVaqZVa4T\u002fphV7ohV7oP+mFXuiFXuA\u002fArV+pUCt3z\u002fCBx988MH3P0HzH4W3Ou4\u002fTbA\u002f\u002f1l87j9CUA6vGGkBQCl2Yid2YgNAVCu1Uiu19j9yIzdyIzf2PzQzMzMzM+s\u002fi21Hynrf+j+6kRu5kRvpP4qd2Imd2Ok\u002fHRON1oKK7j8dE43WgoruPx0TjdaCiu4\u002fAutn1NvW+z+wHSXadWf0P9ultX1cY+Y\u002fXKmVWqmV6j9YuJSfic\u002frP1i4lJ+Jz\u002fs\u002f3y8ALV1O8D+8pekUsZHjP1UDSxmBawFAzGndVaHq9z9GxCJwh+IDQLeDLAtCxuA\u002feQnwpfsR4z+N6GU+dIMFQLfLSnz4QAhAFJkjtgxsCEBJw0BO9kH+PzdCLZ9Dg\u002fI\u002fzjMqS\u002fSbB0CV4x6ijrztPwG2wKcVRhRAmsVm0Mf3EECuZjsjXWn8P9ELvdALvfA\u002f2Ymd2ImdDEDaiZ3YiZ0RQGZmZmZmZu4\u002fhl7ohV5oIEDTSq3USq30P5\u002fYiZ3Yif0\u002fKHZiJ3Zi7z8FP\u002fADP\u002fALQB0TjdaCiu4\u002fip3YiZ3Y6T8dE43WgoruPx0TjdaCiu4\u002fHRON1oKK7j8dE43WgoruPx0TjdaCiu4\u002fHRON1oKK7j8dE43WgoruPx0TjdaCiu4\u002fHRON1oKK7j8dE43WgoruP0\u002fsxE7sxPo\u002fHOus2nN87j8JfuAHfuAoQHWueLFOL\u002fk\u002fNDMzMzMz6z+D4HR0OtHeP92iVCoVpfI\u002faohRrJ3R7T\u002f8ffcTs1D5P8ZO7MRO7Ow\u002fHRON1oKK7j8MtJyfaj\u002fpP6n0HBWOWOM\u002fT+zETuzEEkBBiSxygngFQHyC+tGiy\u002fk\u002fkSP9yLwi+z+fOPrRunndPyM0KlizUfQ\u002f8WrDu9jSDEBBQsqZIVHgPzUacTuc7gNAr78cnh5jBEC6KhnWKonsP0HzH4W3Ou4\u002fQfMfhbc67j9B8x+FtzruP0HzH4W3Ov4\u002f"},"type":"histogram"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"margin":{"l":10,"r":10,"t":10,"b":10},"xaxis":{"title":{},"range":[0,50.0],"tickmode":"linear","dtick":2.0},"barmode":"stack","yaxis":{"title":{}},"bargap":0.05,"hovermode":"x unified"},                        {"responsive": true}                    )                };            </script>        </div>
+    
+    </div>
+      <div class="card">
+      <h3>Potenziale</h3>
+      
+      <div>                            <div id="182d2868-365b-49cb-88f0-0ffa0170ba7c" class="plotly-graph-div" style="height:180px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("182d2868-365b-49cb-88f0-0ffa0170ba7c")) {                    Plotly.newPlot(                        "182d2868-365b-49cb-88f0-0ffa0170ba7c",                        [{"hovertemplate":"%{y}\u003cbr\u003e% der MIV-Trips (Werktag): %{x:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","insidetextanchor":"middle","marker":{"color":"#17becf","line":{"color":"white","width":0}},"name":"% der MIV-Trips (Werktag)","orientation":"h","text":["15%","17%","32%"],"textposition":"inside","x":[14.902363823227132,16.95786228160329,31.86022610483042],"y":["Velo","E-Bike","Kombiniert"],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"range":[0,100],"title":{"text":"% der MIV-Trips (Werktag)"},"tickmode":"linear","dtick":10},"yaxis":{"title":{},"autorange":"reversed"},"margin":{"l":10,"r":10,"t":10,"b":20},"height":180,"showlegend":false},                        {"responsive": true}                    )                };            </script>        </div>
+    
+    </div>
+    </div>
+
+    
+    <h2>Daten</h2>
+    <div class="card">
+      <div class="small">
+        <p>Die Analyse beruht auf den folgenden Datensätzen. Soweit nicht anders angegeben, beziehen sich alle Analysen im Dashboard auf die hier pro Datensatz aufgeführten Zeiträume.</p>
+        <p><strong>42hacks Routing Algorithmus</strong> berechnet wahrscheinliche MIV- und ÖV-Reiserouten basierend auf Quell-Ziel-Nachfragematrizen. <strong>Version:</strong> 2025</p>
+        <p><strong>Swisscom Quell-Ziel-Daten</strong> bilden die Trip-Nachfrage für Wochentage und Wochenenden zwischen Quell-Ziel-Regionen für die gesamte Schweiz auf einem 1&nbsp;km² Raster ab. <strong>Datensatz:</strong> Gemittelter Werktag, 2023</p>
+        <p><strong>Google Environmental Insights Explorer (EIE) – Transport</strong> analysiert Google Maps und andere Quellen, um städtespezifische Informationen darüber bereitzustellen, wie Menschen reisen, einschliesslich Erkenntnissen über die Entwicklung des Modal Split. <strong>Version:</strong> 2023</p>
+      </div>
+    </div>
+
+    <hr>
+    <div class="footer">
+      <span class="small">Hinweis: Karten sind als separate HTML-Dateien eingebettet.</span>
+    </div>
+  
+
+</div>
+
+<script>
+(function(){
+  // ---------- Lazy-load iframes ----------
+  function loadIframe(iframe){
+    if (!iframe || iframe.__loaded) return;
+    var real = iframe.getAttribute('data-src');
+    if (!real) return;
+    iframe.src = real;
+    iframe.__loaded = true;
+  }
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) loadIframe(e.target); });
+  }, {rootMargin: '200px'}) : null;
+
+  var iframes = document.querySelectorAll('iframe[data-src]');
+  iframes.forEach(function(iframe){
+    if (io) io.observe(iframe); else loadIframe(iframe);
+    var details = iframe.closest('details');
+    if (details) {
+      details.addEventListener('toggle', function(){
+        if (details.open) {
+          loadIframe(iframe);
+          try {
+            iframe.contentWindow.dispatchEvent(new Event('resize'));
+            setTimeout(function(){ iframe.contentWindow.dispatchEvent(new Event('resize')); }, 150);
+          } catch(e) {}
+        }
+      });
+    }
+  });
+
+  // ---------- Tabs logic ----------
+  function switchToKnot(id){
+    var tabButtons = document.querySelectorAll('.tabs-nav [role="tab"]');
+    var panels     = document.querySelectorAll('.tab-panel');
+    var found = false;
+
+    tabButtons.forEach(function(btn){
+      var isTarget = btn.getAttribute('data-tab-target') === id;
+      btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+      if (isTarget) found = true;
+    });
+
+    panels.forEach(function(p){
+      var isTarget = p.getAttribute('data-tab-panel') === id;
+      p.setAttribute('data-active', isTarget ? 'true' : 'false');
+
+      // Load any lazy iframes when a panel becomes active
+      if (isTarget) {
+        p.querySelectorAll('iframe[data-src]').forEach(function(iframe){
+          if (!iframe.__loaded) {
+            try { iframe.src = iframe.getAttribute('data-src'); iframe.__loaded = true; } catch(e){}
+          }
+          try {
+            iframe.contentWindow && iframe.contentWindow.dispatchEvent(new Event('resize'));
+            setTimeout(function(){ iframe.contentWindow && iframe.contentWindow.dispatchEvent(new Event('resize')); }, 150);
+          } catch(e){}
+        });
+        var tabEl = document.getElementById(id + '-tab');
+        if (tabEl) tabEl.scrollIntoView({behavior:'smooth', block:'nearest', inline:'nearest'});
+      }
+    });
+
+    if (found) {
+      try { history.replaceState(null, '', '#' + id); } catch(e){}
+    }
+    return found;
+  }
+  window.switchToKnot = switchToKnot;
+
+  // Click handling for tabs
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.tabs-nav [role="tab"]');
+    if (!btn) return;
+    switchToKnot(btn.getAttribute('data-tab-target'));
+  });
+
+  // Deep-link support via hash
+  function initialTabFromHash(){
+    var hash = (location.hash || '').replace('#','');
+    if (hash && document.querySelector('[data-tab-panel="'+hash+'"]')) {
+      switchToKnot(hash);
+    } else {
+      var first = document.querySelector('.tabs-nav [role="tab"]');
+      if (first) switchToKnot(first.getAttribute('data-tab-target'));
+    }
+  }
+  window.addEventListener('hashchange', initialTabFromHash);
+  initialTabFromHash();
+
+  // Message bridge for overview map iframes:
+  // Expect messages like: { type: 'selectKnot', id: 'k-<slug>' }
+  window.addEventListener('message', function(ev){
+    try {
+      var d = ev.data || {};
+      if (d.type === 'selectKnot' && typeof d.id === 'string') switchToKnot(d.id);
+    } catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
