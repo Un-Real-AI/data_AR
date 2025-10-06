@@ -58,7 +58,7 @@
 <body>
 <div class="report">
 
-  <div class="meta">Erstellt am 2025-10-03 16:50</div>
+  <div class="meta">Erstellt am 2025-10-06 09:52</div>
   <h1>Dashboard</h1>
 
   
@@ -87,6 +87,12 @@
   
     <h2>Überblick</h2>
     <p class="small">Die Analyse bezieht sich auf einen durchschnittlichen Werktag 2023.</p>
+        <div class="small">
+      <p>Die Übersicht der Top-10 MIV Korridore des Kantons zeigt wo Potential für MIV-Shift besteht. Mouseover über eine der Korridorlinien, um ein Popup-Fenster anzuzeigen, das die MIV-Fahrten auf diesem Korridor an einem durchschnittlichen Arbeitstag 2023 und den Prozentsatz der Fahrten ohne gute ÖV-Alternative (Fahrten mit roter ÖV-Qualität) anzeigt.</p>
+      <p>Die Farbe der Linie gibt an, wie viele der aktuellen Autofahrer auf diesem MIV-Korridor eine gute ÖV-Alternative zu ihrer Autofahrt haben. <span style="color:green;font-weight:600">Grün</span> bedeutet, dass mehr Menschen eine gute ÖV-Alternative für ihre Autofahrt haben, <span style="color:red;font-weight:600">rot</span> bedeutet, dass weniger Menschen eine praktikable ÖV-Alternative haben. Die Linienstärke gibt das Fahrtvolumen auf dem Korridor an.</p>
+    </div>
+
+
 
     <div class="card">
       <h3>Korridore</h3>
@@ -99,18 +105,12 @@
       </div>
     
     </div>
-    <div class="small">
-      <h3>Korridore</h3>
-      <p>Die Übersicht der Top-10 MIV Korridore des Kantons zeigt wo Potential für MIV-Shift besteht. Mouseover über eine der Korridorlinien, um ein Popup-Fenster anzuzeigen, das die MIV-Fahrten auf diesem Korridor an einem durchschnittlichen Arbeitstag 2023 und den Prozentsatz der Fahrten ohne gute ÖV-Alternative (Fahrten mit roter ÖV-Qualität) anzeigt.</p>
-      <p>Die Farbe der Linie gibt an, wie viele der aktuellen Autofahrer auf diesem MIV-Korridor eine gute ÖV-Alternative zu ihrer Autofahrt haben. <span style="color:green;font-weight:600">Grün</span> bedeutet, dass mehr Menschen eine gute ÖV-Alternative für ihre Autofahrt haben, <span style="color:red;font-weight:600">rot</span> bedeutet, dass weniger Menschen eine praktikable ÖV-Alternative haben. Die Linienstärke gibt das Fahrtvolumen auf dem Korridor an.</p>
-    </div>
 
     <div class="small">
       <h3>Korridor Definition</h3>
       <p>Ein Korridor umfasst alle Fahrten:</p>
       <img src="corridor_definitions.png" alt="Korridor Definition" style="width:50%;">
     </div>
-
     <h2 style="margin-top:16px">Korridor</h2>
 
     
@@ -221,8 +221,8 @@
           <a href="1_herisau-winkeln/herisau-winkeln_report.html">herisau-winkeln_report.html</a>
         </div>
         
-    <div class="row-3">
-      <div class="card">
+<div class="row-3">
+  <div class="card">
       <h3>Lage</h3>
       
       <iframe data-src="./1_herisau-winkeln/herisau-winkeln_corridor_map.html" src="about:blank" width="100%" height="600"
@@ -233,9 +233,10 @@
       </div>
     
     </div>
-      <div class="card">
+
+  <div class="card">
       <h3>Hauptstrasse</h3>
-      <table class="dataframe table">
+      <div class="small"><p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p></div><table class="dataframe table">
   <thead>
     <tr style="text-align: right;">
       <th>Namen</th>
@@ -252,14 +253,20 @@
   </tbody>
 </table>
     </div>
-      <div class="small">
-        <h3>Hauptstrasse</h3>
-        <p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p>
-      </div>
-    </div>
+</div>
+
+
 
     
     <h2>Verkehrsaufkommen und MIV shifting Potentiale</h2>
+      <div class="small">
+      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
+      <ul>
+        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
+        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
+        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
+      </ul>
+    </div>
     <div class="row">
       <div class="card">
       <h3>MIV-Shift Potenziale</h3>
@@ -293,19 +300,13 @@
     
     </div>
     </div>
-    <div class="small">
-      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
-      <ul>
-        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
-        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
-        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
-      </ul>
-    </div>
+
 
     
     <h2>Nachfrage</h2>
+    
     <div class="small">
-      <p>Die Baumdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
     </div>
     <div class="row">
       <div class="card">
@@ -320,13 +321,12 @@
     
     </div>
     </div>
-    <div class="small">
-      <h3>Gesamtnachfrage Tiles</h3>
-      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
-      <p><strong>Mouseover:</strong><br> Anzahl Wege (Werktag)<br> Anteil am Korridorverkehr</p>
-    </div>
+
 
     <h3>Korridor Nachfrage</h3>
+    <div class="small">
+      <p>Die Mosaikdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+    </div>
     <div class="row">
       <div class="card">
       <h3>Top MIV-Verkehr Gemeinde Paare</h3>
@@ -838,10 +838,10 @@
     
     <h2>Korridor ÖV-Potenzial</h2>
     <div class="small">
-      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Baumdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
-      <p>Die Baumdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
-      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, die eine gute oder sehr gute ÖV-Alternative haben und daher ohne Angebotsverbesserung umsteigen könnten.</p>
-      <p class="small">Hinweis: Popups zeigen menschenlesbare Werte.</p>
+      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Mosaikdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
+      <p>Die Mosaikdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
+      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, für die eine gute oder sehr gute ÖV-Alternative besteht und die daher auch ohne Angebotsverbesserung mit öffentlichen Verkehrsmitteln statt mit dem Auto zurückgelegt werden könnten.</p>
+
     </div>
     <div class="row">
       <div class="card">
@@ -1444,8 +1444,8 @@
           <a href="2_herisau-gossau/herisau-gossau_report.html">herisau-gossau_report.html</a>
         </div>
         
-    <div class="row-3">
-      <div class="card">
+<div class="row-3">
+  <div class="card">
       <h3>Lage</h3>
       
       <iframe data-src="./2_herisau-gossau/herisau-gossau_corridor_map.html" src="about:blank" width="100%" height="600"
@@ -1456,9 +1456,10 @@
       </div>
     
     </div>
-      <div class="card">
+
+  <div class="card">
       <h3>Hauptstrasse</h3>
-      <table class="dataframe table">
+      <div class="small"><p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p></div><table class="dataframe table">
   <thead>
     <tr style="text-align: right;">
       <th>Namen</th>
@@ -1475,14 +1476,20 @@
   </tbody>
 </table>
     </div>
-      <div class="small">
-        <h3>Hauptstrasse</h3>
-        <p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p>
-      </div>
-    </div>
+</div>
+
+
 
     
     <h2>Verkehrsaufkommen und MIV shifting Potentiale</h2>
+      <div class="small">
+      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
+      <ul>
+        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
+        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
+        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
+      </ul>
+    </div>
     <div class="row">
       <div class="card">
       <h3>MIV-Shift Potenziale</h3>
@@ -1516,19 +1523,13 @@
     
     </div>
     </div>
-    <div class="small">
-      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
-      <ul>
-        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
-        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
-        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
-      </ul>
-    </div>
+
 
     
     <h2>Nachfrage</h2>
+    
     <div class="small">
-      <p>Die Baumdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
     </div>
     <div class="row">
       <div class="card">
@@ -1543,13 +1544,12 @@
     
     </div>
     </div>
-    <div class="small">
-      <h3>Gesamtnachfrage Tiles</h3>
-      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
-      <p><strong>Mouseover:</strong><br> Anzahl Wege (Werktag)<br> Anteil am Korridorverkehr</p>
-    </div>
+
 
     <h3>Korridor Nachfrage</h3>
+    <div class="small">
+      <p>Die Mosaikdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+    </div>
     <div class="row">
       <div class="card">
       <h3>Top MIV-Verkehr Gemeinde Paare</h3>
@@ -2061,10 +2061,10 @@
     
     <h2>Korridor ÖV-Potenzial</h2>
     <div class="small">
-      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Baumdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
-      <p>Die Baumdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
-      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, die eine gute oder sehr gute ÖV-Alternative haben und daher ohne Angebotsverbesserung umsteigen könnten.</p>
-      <p class="small">Hinweis: Popups zeigen menschenlesbare Werte.</p>
+      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Mosaikdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
+      <p>Die Mosaikdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
+      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, für die eine gute oder sehr gute ÖV-Alternative besteht und die daher auch ohne Angebotsverbesserung mit öffentlichen Verkehrsmitteln statt mit dem Auto zurückgelegt werden könnten.</p>
+
     </div>
     <div class="row">
       <div class="card">
@@ -2667,8 +2667,8 @@
           <a href="3_nieder-teufen-lustmuehle/nieder-teufen-lustmuehle_report.html">nieder-teufen-lustmuehle_report.html</a>
         </div>
         
-    <div class="row-3">
-      <div class="card">
+<div class="row-3">
+  <div class="card">
       <h3>Lage</h3>
       
       <iframe data-src="./3_nieder-teufen-lustmuehle/nieder-teufen-lustmuehle_corridor_map.html" src="about:blank" width="100%" height="600"
@@ -2679,9 +2679,10 @@
       </div>
     
     </div>
-      <div class="card">
+
+  <div class="card">
       <h3>Hauptstrasse</h3>
-      <table class="dataframe table">
+      <div class="small"><p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p></div><table class="dataframe table">
   <thead>
     <tr style="text-align: right;">
       <th>Namen</th>
@@ -2698,14 +2699,20 @@
   </tbody>
 </table>
     </div>
-      <div class="small">
-        <h3>Hauptstrasse</h3>
-        <p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p>
-      </div>
-    </div>
+</div>
+
+
 
     
     <h2>Verkehrsaufkommen und MIV shifting Potentiale</h2>
+      <div class="small">
+      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
+      <ul>
+        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
+        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
+        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
+      </ul>
+    </div>
     <div class="row">
       <div class="card">
       <h3>MIV-Shift Potenziale</h3>
@@ -2739,19 +2746,13 @@
     
     </div>
     </div>
-    <div class="small">
-      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
-      <ul>
-        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
-        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
-        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
-      </ul>
-    </div>
+
 
     
     <h2>Nachfrage</h2>
+    
     <div class="small">
-      <p>Die Baumdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
     </div>
     <div class="row">
       <div class="card">
@@ -2766,13 +2767,12 @@
     
     </div>
     </div>
-    <div class="small">
-      <h3>Gesamtnachfrage Tiles</h3>
-      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
-      <p><strong>Mouseover:</strong><br> Anzahl Wege (Werktag)<br> Anteil am Korridorverkehr</p>
-    </div>
+
 
     <h3>Korridor Nachfrage</h3>
+    <div class="small">
+      <p>Die Mosaikdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+    </div>
     <div class="row">
       <div class="card">
       <h3>Top MIV-Verkehr Gemeinde Paare</h3>
@@ -3284,10 +3284,10 @@
     
     <h2>Korridor ÖV-Potenzial</h2>
     <div class="small">
-      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Baumdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
-      <p>Die Baumdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
-      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, die eine gute oder sehr gute ÖV-Alternative haben und daher ohne Angebotsverbesserung umsteigen könnten.</p>
-      <p class="small">Hinweis: Popups zeigen menschenlesbare Werte.</p>
+      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Mosaikdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
+      <p>Die Mosaikdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
+      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, für die eine gute oder sehr gute ÖV-Alternative besteht und die daher auch ohne Angebotsverbesserung mit öffentlichen Verkehrsmitteln statt mit dem Auto zurückgelegt werden könnten.</p>
+
     </div>
     <div class="row">
       <div class="card">
@@ -3890,8 +3890,8 @@
           <a href="4_hundwil-appenzell/hundwil-appenzell_report.html">hundwil-appenzell_report.html</a>
         </div>
         
-    <div class="row-3">
-      <div class="card">
+<div class="row-3">
+  <div class="card">
       <h3>Lage</h3>
       
       <iframe data-src="./4_hundwil-appenzell/hundwil-appenzell_corridor_map.html" src="about:blank" width="100%" height="600"
@@ -3902,9 +3902,10 @@
       </div>
     
     </div>
-      <div class="card">
+
+  <div class="card">
       <h3>Hauptstrasse</h3>
-      <table class="dataframe table">
+      <div class="small"><p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p></div><table class="dataframe table">
   <thead>
     <tr style="text-align: right;">
       <th>Namen</th>
@@ -3921,14 +3922,20 @@
   </tbody>
 </table>
     </div>
-      <div class="small">
-        <h3>Hauptstrasse</h3>
-        <p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p>
-      </div>
-    </div>
+</div>
+
+
 
     
     <h2>Verkehrsaufkommen und MIV shifting Potentiale</h2>
+      <div class="small">
+      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
+      <ul>
+        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
+        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
+        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
+      </ul>
+    </div>
     <div class="row">
       <div class="card">
       <h3>MIV-Shift Potenziale</h3>
@@ -3962,19 +3969,13 @@
     
     </div>
     </div>
-    <div class="small">
-      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
-      <ul>
-        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
-        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
-        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
-      </ul>
-    </div>
+
 
     
     <h2>Nachfrage</h2>
+    
     <div class="small">
-      <p>Die Baumdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
     </div>
     <div class="row">
       <div class="card">
@@ -3989,13 +3990,12 @@
     
     </div>
     </div>
-    <div class="small">
-      <h3>Gesamtnachfrage Tiles</h3>
-      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
-      <p><strong>Mouseover:</strong><br> Anzahl Wege (Werktag)<br> Anteil am Korridorverkehr</p>
-    </div>
+
 
     <h3>Korridor Nachfrage</h3>
+    <div class="small">
+      <p>Die Mosaikdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+    </div>
     <div class="row">
       <div class="card">
       <h3>Top MIV-Verkehr Gemeinde Paare</h3>
@@ -4507,10 +4507,10 @@
     
     <h2>Korridor ÖV-Potenzial</h2>
     <div class="small">
-      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Baumdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
-      <p>Die Baumdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
-      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, die eine gute oder sehr gute ÖV-Alternative haben und daher ohne Angebotsverbesserung umsteigen könnten.</p>
-      <p class="small">Hinweis: Popups zeigen menschenlesbare Werte.</p>
+      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Mosaikdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
+      <p>Die Mosaikdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
+      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, für die eine gute oder sehr gute ÖV-Alternative besteht und die daher auch ohne Angebotsverbesserung mit öffentlichen Verkehrsmitteln statt mit dem Auto zurückgelegt werden könnten.</p>
+
     </div>
     <div class="row">
       <div class="card">
@@ -5113,8 +5113,8 @@
           <a href="5_heiden-grub/heiden-grub_report.html">heiden-grub_report.html</a>
         </div>
         
-    <div class="row-3">
-      <div class="card">
+<div class="row-3">
+  <div class="card">
       <h3>Lage</h3>
       
       <iframe data-src="./5_heiden-grub/heiden-grub_corridor_map.html" src="about:blank" width="100%" height="600"
@@ -5125,9 +5125,10 @@
       </div>
     
     </div>
-      <div class="card">
+
+  <div class="card">
       <h3>Hauptstrasse</h3>
-      <table class="dataframe table">
+      <div class="small"><p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p></div><table class="dataframe table">
   <thead>
     <tr style="text-align: right;">
       <th>Namen</th>
@@ -5144,14 +5145,20 @@
   </tbody>
 </table>
     </div>
-      <div class="small">
-        <h3>Hauptstrasse</h3>
-        <p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p>
-      </div>
-    </div>
+</div>
+
+
 
     
     <h2>Verkehrsaufkommen und MIV shifting Potentiale</h2>
+      <div class="small">
+      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
+      <ul>
+        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
+        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
+        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
+      </ul>
+    </div>
     <div class="row">
       <div class="card">
       <h3>MIV-Shift Potenziale</h3>
@@ -5185,19 +5192,13 @@
     
     </div>
     </div>
-    <div class="small">
-      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
-      <ul>
-        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
-        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
-        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
-      </ul>
-    </div>
+
 
     
     <h2>Nachfrage</h2>
+    
     <div class="small">
-      <p>Die Baumdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
     </div>
     <div class="row">
       <div class="card">
@@ -5212,13 +5213,12 @@
     
     </div>
     </div>
-    <div class="small">
-      <h3>Gesamtnachfrage Tiles</h3>
-      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
-      <p><strong>Mouseover:</strong><br> Anzahl Wege (Werktag)<br> Anteil am Korridorverkehr</p>
-    </div>
+
 
     <h3>Korridor Nachfrage</h3>
+    <div class="small">
+      <p>Die Mosaikdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+    </div>
     <div class="row">
       <div class="card">
       <h3>Top MIV-Verkehr Gemeinde Paare</h3>
@@ -5730,10 +5730,10 @@
     
     <h2>Korridor ÖV-Potenzial</h2>
     <div class="small">
-      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Baumdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
-      <p>Die Baumdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
-      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, die eine gute oder sehr gute ÖV-Alternative haben und daher ohne Angebotsverbesserung umsteigen könnten.</p>
-      <p class="small">Hinweis: Popups zeigen menschenlesbare Werte.</p>
+      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Mosaikdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
+      <p>Die Mosaikdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
+      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, für die eine gute oder sehr gute ÖV-Alternative besteht und die daher auch ohne Angebotsverbesserung mit öffentlichen Verkehrsmitteln statt mit dem Auto zurückgelegt werden könnten.</p>
+
     </div>
     <div class="row">
       <div class="card">
@@ -6336,8 +6336,8 @@
           <a href="6_appenzell-gais/appenzell-gais_report.html">appenzell-gais_report.html</a>
         </div>
         
-    <div class="row-3">
-      <div class="card">
+<div class="row-3">
+  <div class="card">
       <h3>Lage</h3>
       
       <iframe data-src="./6_appenzell-gais/appenzell-gais_corridor_map.html" src="about:blank" width="100%" height="600"
@@ -6348,9 +6348,10 @@
       </div>
     
     </div>
-      <div class="card">
+
+  <div class="card">
       <h3>Hauptstrasse</h3>
-      <table class="dataframe table">
+      <div class="small"><p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p></div><table class="dataframe table">
   <thead>
     <tr style="text-align: right;">
       <th>Namen</th>
@@ -6367,14 +6368,20 @@
   </tbody>
 </table>
     </div>
-      <div class="small">
-        <h3>Hauptstrasse</h3>
-        <p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p>
-      </div>
-    </div>
+</div>
+
+
 
     
     <h2>Verkehrsaufkommen und MIV shifting Potentiale</h2>
+      <div class="small">
+      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
+      <ul>
+        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
+        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
+        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
+      </ul>
+    </div>
     <div class="row">
       <div class="card">
       <h3>MIV-Shift Potenziale</h3>
@@ -6408,19 +6415,13 @@
     
     </div>
     </div>
-    <div class="small">
-      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
-      <ul>
-        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
-        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
-        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
-      </ul>
-    </div>
+
 
     
     <h2>Nachfrage</h2>
+    
     <div class="small">
-      <p>Die Baumdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
     </div>
     <div class="row">
       <div class="card">
@@ -6435,13 +6436,12 @@
     
     </div>
     </div>
-    <div class="small">
-      <h3>Gesamtnachfrage Tiles</h3>
-      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
-      <p><strong>Mouseover:</strong><br> Anzahl Wege (Werktag)<br> Anteil am Korridorverkehr</p>
-    </div>
+
 
     <h3>Korridor Nachfrage</h3>
+    <div class="small">
+      <p>Die Mosaikdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+    </div>
     <div class="row">
       <div class="card">
       <h3>Top MIV-Verkehr Gemeinde Paare</h3>
@@ -6953,10 +6953,10 @@
     
     <h2>Korridor ÖV-Potenzial</h2>
     <div class="small">
-      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Baumdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
-      <p>Die Baumdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
-      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, die eine gute oder sehr gute ÖV-Alternative haben und daher ohne Angebotsverbesserung umsteigen könnten.</p>
-      <p class="small">Hinweis: Popups zeigen menschenlesbare Werte.</p>
+      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Mosaikdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
+      <p>Die Mosaikdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
+      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, für die eine gute oder sehr gute ÖV-Alternative besteht und die daher auch ohne Angebotsverbesserung mit öffentlichen Verkehrsmitteln statt mit dem Auto zurückgelegt werden könnten.</p>
+
     </div>
     <div class="row">
       <div class="card">
@@ -7559,8 +7559,8 @@
           <a href="7_st.-gallen-speicher/st.-gallen-speicher_report.html">st.-gallen-speicher_report.html</a>
         </div>
         
-    <div class="row-3">
-      <div class="card">
+<div class="row-3">
+  <div class="card">
       <h3>Lage</h3>
       
       <iframe data-src="./7_st.-gallen-speicher/st.-gallen-speicher_corridor_map.html" src="about:blank" width="100%" height="600"
@@ -7571,9 +7571,10 @@
       </div>
     
     </div>
-      <div class="card">
+
+  <div class="card">
       <h3>Hauptstrasse</h3>
-      <table class="dataframe table">
+      <div class="small"><p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p></div><table class="dataframe table">
   <thead>
     <tr style="text-align: right;">
       <th>Namen</th>
@@ -7590,14 +7591,20 @@
   </tbody>
 </table>
     </div>
-      <div class="small">
-        <h3>Hauptstrasse</h3>
-        <p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p>
-      </div>
-    </div>
+</div>
+
+
 
     
     <h2>Verkehrsaufkommen und MIV shifting Potentiale</h2>
+      <div class="small">
+      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
+      <ul>
+        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
+        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
+        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
+      </ul>
+    </div>
     <div class="row">
       <div class="card">
       <h3>MIV-Shift Potenziale</h3>
@@ -7631,19 +7638,13 @@
     
     </div>
     </div>
-    <div class="small">
-      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
-      <ul>
-        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
-        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
-        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
-      </ul>
-    </div>
+
 
     
     <h2>Nachfrage</h2>
+    
     <div class="small">
-      <p>Die Baumdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
     </div>
     <div class="row">
       <div class="card">
@@ -7658,13 +7659,12 @@
     
     </div>
     </div>
-    <div class="small">
-      <h3>Gesamtnachfrage Tiles</h3>
-      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
-      <p><strong>Mouseover:</strong><br> Anzahl Wege (Werktag)<br> Anteil am Korridorverkehr</p>
-    </div>
+
 
     <h3>Korridor Nachfrage</h3>
+    <div class="small">
+      <p>Die Mosaikdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+    </div>
     <div class="row">
       <div class="card">
       <h3>Top MIV-Verkehr Gemeinde Paare</h3>
@@ -8176,10 +8176,10 @@
     
     <h2>Korridor ÖV-Potenzial</h2>
     <div class="small">
-      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Baumdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
-      <p>Die Baumdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
-      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, die eine gute oder sehr gute ÖV-Alternative haben und daher ohne Angebotsverbesserung umsteigen könnten.</p>
-      <p class="small">Hinweis: Popups zeigen menschenlesbare Werte.</p>
+      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Mosaikdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
+      <p>Die Mosaikdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
+      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, für die eine gute oder sehr gute ÖV-Alternative besteht und die daher auch ohne Angebotsverbesserung mit öffentlichen Verkehrsmitteln statt mit dem Auto zurückgelegt werden könnten.</p>
+
     </div>
     <div class="row">
       <div class="card">
@@ -8782,8 +8782,8 @@
           <a href="8_altstaetten-gais/altstaetten-gais_report.html">altstaetten-gais_report.html</a>
         </div>
         
-    <div class="row-3">
-      <div class="card">
+<div class="row-3">
+  <div class="card">
       <h3>Lage</h3>
       
       <iframe data-src="./8_altstaetten-gais/altstaetten-gais_corridor_map.html" src="about:blank" width="100%" height="600"
@@ -8794,9 +8794,10 @@
       </div>
     
     </div>
-      <div class="card">
+
+  <div class="card">
       <h3>Hauptstrasse</h3>
-      <table class="dataframe table">
+      <div class="small"><p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p></div><table class="dataframe table">
   <thead>
     <tr style="text-align: right;">
       <th>Namen</th>
@@ -8813,14 +8814,20 @@
   </tbody>
 </table>
     </div>
-      <div class="small">
-        <h3>Hauptstrasse</h3>
-        <p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p>
-      </div>
-    </div>
+</div>
+
+
 
     
     <h2>Verkehrsaufkommen und MIV shifting Potentiale</h2>
+      <div class="small">
+      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
+      <ul>
+        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
+        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
+        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
+      </ul>
+    </div>
     <div class="row">
       <div class="card">
       <h3>MIV-Shift Potenziale</h3>
@@ -8854,19 +8861,13 @@
     
     </div>
     </div>
-    <div class="small">
-      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
-      <ul>
-        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
-        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
-        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
-      </ul>
-    </div>
+
 
     
     <h2>Nachfrage</h2>
+    
     <div class="small">
-      <p>Die Baumdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
     </div>
     <div class="row">
       <div class="card">
@@ -8881,13 +8882,12 @@
     
     </div>
     </div>
-    <div class="small">
-      <h3>Gesamtnachfrage Tiles</h3>
-      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
-      <p><strong>Mouseover:</strong><br> Anzahl Wege (Werktag)<br> Anteil am Korridorverkehr</p>
-    </div>
+
 
     <h3>Korridor Nachfrage</h3>
+    <div class="small">
+      <p>Die Mosaikdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+    </div>
     <div class="row">
       <div class="card">
       <h3>Top MIV-Verkehr Gemeinde Paare</h3>
@@ -9399,10 +9399,10 @@
     
     <h2>Korridor ÖV-Potenzial</h2>
     <div class="small">
-      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Baumdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
-      <p>Die Baumdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
-      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, die eine gute oder sehr gute ÖV-Alternative haben und daher ohne Angebotsverbesserung umsteigen könnten.</p>
-      <p class="small">Hinweis: Popups zeigen menschenlesbare Werte.</p>
+      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Mosaikdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
+      <p>Die Mosaikdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
+      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, für die eine gute oder sehr gute ÖV-Alternative besteht und die daher auch ohne Angebotsverbesserung mit öffentlichen Verkehrsmitteln statt mit dem Auto zurückgelegt werden könnten.</p>
+
     </div>
     <div class="row">
       <div class="card">
@@ -10005,8 +10005,8 @@
           <a href="9_wolfhalden-lutzenberg/wolfhalden-lutzenberg_report.html">wolfhalden-lutzenberg_report.html</a>
         </div>
         
-    <div class="row-3">
-      <div class="card">
+<div class="row-3">
+  <div class="card">
       <h3>Lage</h3>
       
       <iframe data-src="./9_wolfhalden-lutzenberg/wolfhalden-lutzenberg_corridor_map.html" src="about:blank" width="100%" height="600"
@@ -10017,9 +10017,10 @@
       </div>
     
     </div>
-      <div class="card">
+
+  <div class="card">
       <h3>Hauptstrasse</h3>
-      <table class="dataframe table">
+      <div class="small"><p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p></div><table class="dataframe table">
   <thead>
     <tr style="text-align: right;">
       <th>Namen</th>
@@ -10036,14 +10037,20 @@
   </tbody>
 </table>
     </div>
-      <div class="small">
-        <h3>Hauptstrasse</h3>
-        <p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p>
-      </div>
-    </div>
+</div>
+
+
 
     
     <h2>Verkehrsaufkommen und MIV shifting Potentiale</h2>
+      <div class="small">
+      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
+      <ul>
+        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
+        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
+        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
+      </ul>
+    </div>
     <div class="row">
       <div class="card">
       <h3>MIV-Shift Potenziale</h3>
@@ -10077,19 +10084,13 @@
     
     </div>
     </div>
-    <div class="small">
-      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
-      <ul>
-        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
-        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
-        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
-      </ul>
-    </div>
+
 
     
     <h2>Nachfrage</h2>
+    
     <div class="small">
-      <p>Die Baumdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
     </div>
     <div class="row">
       <div class="card">
@@ -10104,13 +10105,12 @@
     
     </div>
     </div>
-    <div class="small">
-      <h3>Gesamtnachfrage Tiles</h3>
-      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
-      <p><strong>Mouseover:</strong><br> Anzahl Wege (Werktag)<br> Anteil am Korridorverkehr</p>
-    </div>
+
 
     <h3>Korridor Nachfrage</h3>
+    <div class="small">
+      <p>Die Mosaikdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+    </div>
     <div class="row">
       <div class="card">
       <h3>Top MIV-Verkehr Gemeinde Paare</h3>
@@ -10622,10 +10622,10 @@
     
     <h2>Korridor ÖV-Potenzial</h2>
     <div class="small">
-      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Baumdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
-      <p>Die Baumdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
-      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, die eine gute oder sehr gute ÖV-Alternative haben und daher ohne Angebotsverbesserung umsteigen könnten.</p>
-      <p class="small">Hinweis: Popups zeigen menschenlesbare Werte.</p>
+      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Mosaikdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
+      <p>Die Mosaikdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
+      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, für die eine gute oder sehr gute ÖV-Alternative besteht und die daher auch ohne Angebotsverbesserung mit öffentlichen Verkehrsmitteln statt mit dem Auto zurückgelegt werden könnten.</p>
+
     </div>
     <div class="row">
       <div class="card">
@@ -11228,8 +11228,8 @@
           <a href="10_herisau-waldstatt/herisau-waldstatt_report.html">herisau-waldstatt_report.html</a>
         </div>
         
-    <div class="row-3">
-      <div class="card">
+<div class="row-3">
+  <div class="card">
       <h3>Lage</h3>
       
       <iframe data-src="./10_herisau-waldstatt/herisau-waldstatt_corridor_map.html" src="about:blank" width="100%" height="600"
@@ -11240,9 +11240,10 @@
       </div>
     
     </div>
-      <div class="card">
+
+  <div class="card">
       <h3>Hauptstrasse</h3>
-      <table class="dataframe table">
+      <div class="small"><p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p></div><table class="dataframe table">
   <thead>
     <tr style="text-align: right;">
       <th>Namen</th>
@@ -11259,14 +11260,20 @@
   </tbody>
 </table>
     </div>
-      <div class="small">
-        <h3>Hauptstrasse</h3>
-        <p>Top-Strasse auf dem MIV-Korridor mit Anteil der Strasse am Gesamtverkehr auf dem Korridor an einem durchschnittlichen Werktag.</p>
-      </div>
-    </div>
+</div>
+
+
 
     
     <h2>Verkehrsaufkommen und MIV shifting Potentiale</h2>
+      <div class="small">
+      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
+      <ul>
+        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
+        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
+        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
+      </ul>
+    </div>
     <div class="row">
       <div class="card">
       <h3>MIV-Shift Potenziale</h3>
@@ -11300,19 +11307,13 @@
     
     </div>
     </div>
-    <div class="small">
-      <p>Die MIV-Shift-Potenziale zeigen, für wie viele Fahrten im motorisierten Individualverkehr (MIV) auf dem betrachteten Korridor eine attraktive Alternative mit dem öffentlichen Verkehr (ÖV) oder dem Velo/E-Bike besteht.</p>
-      <ul>
-        <li><strong>ÖV-Potenzial:</strong> Anteil der aktuellen MIV-Fahrten, für die eine <strong>sehr gute (grün)</strong> oder <strong>gute (gelb)</strong> ÖV-Alternative vorhanden ist.</li>
-        <li><strong>Velopotenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>5 km</strong>.</li>
-        <li><strong>Velo- und E-Bike-Potenzial:</strong> Anteil der MIV-Fahrten mit einer Länge von weniger als <strong>10 km</strong>.</li>
-      </ul>
-    </div>
+
 
     
     <h2>Nachfrage</h2>
+    
     <div class="small">
-      <p>Die Baumdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
     </div>
     <div class="row">
       <div class="card">
@@ -11327,13 +11328,12 @@
     
     </div>
     </div>
-    <div class="small">
-      <h3>Gesamtnachfrage Tiles</h3>
-      <p>Die Karte zeigt auf einem 1km² Raster, von wo die Fahrten auf dem Korridor kommen. Die Karte unterscheidet nicht zwischen Ziel- und Quellorten. Mouseover über die 1km² Kacheln, um die Anzahl Trips und den Anteil der Kachel an den Gesamttrips auf dem Korridor anzuzeigen.</p>
-      <p><strong>Mouseover:</strong><br> Anzahl Wege (Werktag)<br> Anteil am Korridorverkehr</p>
-    </div>
+
 
     <h3>Korridor Nachfrage</h3>
+    <div class="small">
+      <p>Die Mosaikdiagramme zeigen die grössten Quell-Ziel-Verbindungen (Gemeinde Paare), die über den Korridor fliessen, sowie die wichtigsten Quell- und Zielorte für den Korridorverkehr. Weiterhin wird angegeben, über welche ÖV-Angebote und ÖV-Haltestellen der jetzige MIV-Verkehr fliessen würde, wenn er auf dem ÖV stattfinden würde.</p>
+    </div>
     <div class="row">
       <div class="card">
       <h3>Top MIV-Verkehr Gemeinde Paare</h3>
@@ -11845,10 +11845,10 @@
     
     <h2>Korridor ÖV-Potenzial</h2>
     <div class="small">
-      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Baumdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
-      <p>Die Baumdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
-      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, die eine gute oder sehr gute ÖV-Alternative haben und daher ohne Angebotsverbesserung umsteigen könnten.</p>
-      <p class="small">Hinweis: Popups zeigen menschenlesbare Werte.</p>
+      <p>Die Karte visualisiert, welche Quell-Ziel-Orte (1km² Raster), die MIV-Verkehr auf dem Korridor erzeugen, ein gutes ÖV-Potenzial haben. Das Mosaikdiagramm zeigt, welche Gemeinde-Quell-Ziel-Verbindungen, die über den Korridor laufen, das grösste ÖV-Potenzial haben.</p>
+      <p>Die Mosaikdiagramme <em>Top ÖV-Potenzial Gemeinden</em>, <em>Top Linien</em> und <em>Top Haltestellen</em> zeigen, welche für den Korridor relevante Gemeinden, Linien und Haltestellen das grösste ÖV-Potenzial haben.</p>
+      <p><strong>ÖV-Potenzial Definition:</strong> Anzahl der MIV-Wege, für die eine gute oder sehr gute ÖV-Alternative besteht und die daher auch ohne Angebotsverbesserung mit öffentlichen Verkehrsmitteln statt mit dem Auto zurückgelegt werden könnten.</p>
+
     </div>
     <div class="row">
       <div class="card">
